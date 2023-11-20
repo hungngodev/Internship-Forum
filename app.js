@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
+console.log("testing");
 
 const express = require('express');
 const path = require('path');
