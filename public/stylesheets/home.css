@@ -56,14 +56,14 @@ body {
     gap: 4vmin;
     position: absolute;
     top: 90%; 
-    left: 85%;
-    transform: translate(0%, -50%);
+    left: 87%;
+    transform: translate(0%, -60%);
     user-select: none;
 }
 
 #image-track>.image {
-    width: 15vmin;
-    height: 20vmin;
+    width: 25.5vmin;
+    height: 30vmin;
     object-fit: cover;
     object-position: 100% center;
     -webkit-touch-callout: none;
