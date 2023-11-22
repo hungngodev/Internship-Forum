@@ -1,54 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internships Forum</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YelpCamp</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/home.css">
-</head>
-
-<body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div>
-                <h3 class="float-md-left mb-0">YelpCamp</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                    <% if(!currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Register</a>
-                    <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
-                    <% } %>
-                </nav>
-            </div>
-        </header>
-        <main class="px-3">
-            <h1>YelpCamp</h1>
-            <p class="lead"> Welcome to YelpCamp! <br> Jump right in and explore our many campgrounds. <br>
-                Feel free to share some of your own and comment on others!</p>
-            <a href="/campgrounds" class="btn btn-lg btn-secondary font-weight-bold border-white bg-white">View
-                Campgrounds</a>
-        </main>
-
-        <footer class="mt-auto text-white-50">
-            <p>&copy; 2020 </p>
-        </footer>
-
-
+  <body class="d-flex text-center text-white bg-dark">
+    <video autoplay muted loop class="myVideo">
+      <source src="/video/loop.mp4" type="video/mp4" />
+    </video>
+    <div class="cover-container d-flex w-100 h-100 p-auto mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <nav
+            class="nav nav-masthead justify-content-center fixed-top float-md-right"
+          >
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <!-- <a class="nav-link" href="/campgrounds">Internships</a> -->
+            <% if(!currentUser) { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+            <% } else { %>
+            <a class="nav-link" href="/logout">Logout</a>
+            <% } %>
+          </nav>
+        </div>
+      </header>
+      <main class="px-3 my-3">
+        <h1 class="Title">Internship Forum</h1>
+        <br />
+        <p class="lead">
+          Start shaping your future today! <br />Discover, Contribute, and
+          Inspire other with your Internship Journey!<br />
+          Explore diverse opportunities, share your unique experiences, and
+          witness a world of possibilities.
+        </p>
+        <a
+          href="/campgrounds"
+          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white"
+          >View Internships</a
+        >
+      </main>
+      <footer class="mt-auto text-white-50">
+        <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+          <img
+            class="image"
+            src="https://cdn3.vectorstock.com/i/1000x1000/03/77/heon-sign-arrow-left-signboard-vector-17560377.jpg"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947995643-0007c2b5ebb6?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947774668-e2ca450802df?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947203582-2787ab7f2920?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947368791-8630979e964b?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947476166-d20496ce6373?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947683280-3be5bfc47075?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662947852129-ead669d746f0?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1662338035015-337495e1f7c2?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            draggable="false"
+          />
+        </div>
+      </footer>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/javascripts/home.js"></script>
+  </body>
 </html>
