@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'samples/landscapes',
+        folder: process.env.CLOUDINARY_FILE,
         allowedFormats: ['jpeg', 'png', 'jpg']
     }
 });
