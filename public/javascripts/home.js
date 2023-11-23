@@ -20,7 +20,7 @@ const handleOnMove = e => {
   track.dataset.percentage = nextPercentage;
   
   track.animate({
-    transform: `translate(${nextPercentage}%, -50%)`
+    transform: `translate(${nextPercentage}%, -60%)`
   }, { duration: 1200, fill: "forwards" });
   count =20;
   for(const image of track.getElementsByClassName("image")) {
