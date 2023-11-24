@@ -121,6 +121,8 @@ app.use(
                 "https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=2700&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 "https://cdn3.vectorstock.com/",
                 "https://t4.ftcdn.net/jpg/03/11/50/71/360_F_311507184_0mErEL2kUw7z4AbXhsxPjFE7hQnY7BLy.jpg",
+                "https://www.shutterstock.com/",
+                "https://wallpaper.dog/large/10812328.jpg",
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
