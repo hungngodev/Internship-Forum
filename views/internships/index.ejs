@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/index.css">
 <div id="cluster-map"></div>
-<div class="container">
+<div class="container mainPage">
     <h1>All Internships</h1>
 
     <% for (let internship of internships){%>
@@ -22,6 +22,9 @@
                     <p class="card-text"><%= internship.description %></p>
                     <p class="card-text">
                         <small class="text-muted"><%= internship.location%></small>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted"><%= internship.area%></small>
                     </p>
                     <p class="card-text">
                         <small class="text-muted">$<%= internship.salary%>/hr</small>

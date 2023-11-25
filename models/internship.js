@@ -29,6 +29,7 @@ const InternshipSchema = new Schema({
     },
     salary: Number,
     description: String,
+    area:String,
     location: String,
     author: {
         type: Schema.Types.ObjectId,
