@@ -29,6 +29,8 @@ module.exports.internshipSchema = Joi.object({
         salary: Joi.number().required().min(0),
         area: Joi.string().required().escapeHTML(),
         location: Joi.string().required().escapeHTML(),
+        company: Joi.string().required().escapeHTML(),
+        link: Joi.string().required().escapeHTML(),
         description: Joi.string().required().escapeHTML()
     }).required(),
     deleteImages: Joi.array()

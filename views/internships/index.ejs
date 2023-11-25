@@ -27,9 +27,12 @@
                         <small class="text-muted"><%= internship.area%></small>
                     </p>
                     <p class="card-text">
+                        <small class="text-muted"><%= internship.company%></small>
+                    </p>
+                    <p class="card-text">
                         <small class="text-muted">$<%= internship.salary%>/hr</small>
                     </p>
-                    <a class="btn btn-primary" href="/internships/<%=internship._id%>">View <%=internship.title%></a>
+                    <a class="btn btn-primary" href="/internships/<%=internship._id%>">View <%=internship.title.substr(50)%></a>
                 </div>
             </div>
         </div>

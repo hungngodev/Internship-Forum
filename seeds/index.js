@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const cities = require('./cities');
-const { places, descriptors } = require('./seedHelpers');
+const { internshipData} = require('./file');
 const Internship = require('../models/internship');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
 mongoose.connect(dbUrl, {
@@ -21,7 +21,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Internship.deleteMany({});
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < internshipData.length; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const salary = Math.floor(Math.random() * 50) + 10;
         const camp = new Internship({
@@ -32,6 +32,8 @@ const seedDB = async () => {
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
             salary,
             area: "Web developer",
+            company:"Google",
+            link:"https://www.google.com/",
             geometry: {
                 type: "Point",
                 coordinates: [

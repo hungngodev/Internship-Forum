@@ -29,6 +29,8 @@ const InternshipSchema = new Schema({
     },
     salary: Number,
     description: String,
+    company: String,
+    link: String,
     area:String,
     location: String,
     author: {

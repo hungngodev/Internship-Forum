@@ -30,6 +30,15 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <label class="form-label" for="company">Company</label>
+                <input class="form-control" type="text" id="company" name="internship[company]"
+                    value="<%=internship.company %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
 
             <div class="mb-3">
                 <label class="form-label" for="salary">Internship Salary</label>
@@ -51,6 +60,16 @@
                     Looks good!
                 </div>
             </div>
+            <div class="mb-3">
+                <label class="form-label" for="link">Link</label>
+                <input class="form-control" type="text" id="link" name="internship[link]"
+                    value="<%=internship.link %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+
             <div class="mb-3">
                 <div class="form-file custom-file">
                     <input type="file" class="form-file-input" id="image" name="image" multiple>
