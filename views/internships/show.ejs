@@ -32,7 +32,11 @@
                 <li class="list-group-item text-muted"><%= internship.location%></li>
                 <li class="list-group-item text-muted"><%= internship.area%></li>
                 <li class="list-group-item text-muted"><%= internship.company%></li>
+            <%  if(internship.salary ==0 || internship.salary==null)  {%> 
+                <li class="list-group-item ">Unspecified Pay</li>
+            <% }else { %>
                 <li class="list-group-item ">$<%= internship.salary%>/hr</li>
+            <% } %>
                 <li class="list-group-item">Submitted by <%= internship.author.username%></li>
                 <li class="list-group-item"><a href="<%=internship.link%>" class="card-link btn btn-primary">The hiring link</a></li>
             </ul>

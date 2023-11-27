@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const cities = require('./cities');
-const { internshipData} = require('./file');
+const { places, descriptors } = require('./seedHelpers');
 const Internship = require('../models/internship');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
 mongoose.connect(dbUrl, {
@@ -21,7 +21,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Internship.deleteMany({});
-    for (let i = 0; i < internshipData.length; i++) {
+    for (let i = 0; i < 300; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const salary = Math.floor(Math.random() * 50) + 10;
         const camp = new Internship({
