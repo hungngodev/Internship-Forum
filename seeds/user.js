@@ -7,7 +7,7 @@ function generateUsers(numberOfUsers) {
     for (let i = 0; i < numberOfUsers; i++) {
         let user = {
             email: fakerator.internet.email(),
-           username: fakerator.names.name(),
+            username: fakerator.names.name(),
             password: fakerator.internet.password(random1000)
         };
         users.push(user);

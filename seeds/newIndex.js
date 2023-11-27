@@ -41,8 +41,8 @@ const seedDBInternship = async () => {
                         body: reviews[k].body,
                         author: userData[random2].id
                     });
-                    const authorReview = User.findById(userData[random2].id);
-                    console.dir(authorReview);
+                    // const authorReview = User.findById(userData[random2].id);
+                    // console.dir(authorReview);
                     // await authorReview.updateOne({ $push: { reviews: review._id } });
                     // await authorReview.save();
                     await review.save();
@@ -77,9 +77,9 @@ const seedDBInternship = async () => {
                     ],
                     reviews: internshipReview
                 })
-                const author = User.findById(userData[random].id);
-                await author.updateOne({ $push: { post: camp._id } });
-                await author.save();
+                // const author = User.findById(userData[random].id);
+                // await author.updateOne({ $push: { post: camp._id } });
+                // await author.save();
                 await camp.save();
             } catch (error) {
                 console.log(i,j);

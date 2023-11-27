@@ -8,17 +8,17 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
-    post:[{
-        type: Schema.Types.ObjectId,
-        ref:'Internship'
-    }],
-    reviews:[{
-        type: Schema.Types.ObjectId,
-        ref:'Review'
-    }]
+    // post:[{
+    //     type: Schema.Types.ObjectId,
+    //     ref:'Internship'
+    // }],
+    // reviews:[{
+    //     type: Schema.Types.ObjectId,
+    //     ref:'Review'
+    // }]
 });
 
-UserSchema.plugin(passportLocalMongoos,{
+UserSchema.plugin(passportLocalMongoose,{
     
 });
 
