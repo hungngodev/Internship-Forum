@@ -20,9 +20,12 @@ module.exports.createInternship = async (req, res, next) => {
         limit: 1
     }).send()
     const internship = new Internship(req.body.internship);
+    const user = User.findById(req.user._id);
     internship.geometry = geoData.body.features[0].geometry;
     internship.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.author = req.user._id;
+    user.post.push(internship);
+    await user.save();
     await internship.save();
     req.flash('success', 'Successfully made a new internship!');
     res.redirect(`/internships/${internship._id}`)
@@ -70,7 +73,19 @@ module.exports.updateInternship = async (req, res) => {
 }
 
 module.exports.deleteInternship = async (req, res) => {
-    const { id } = req.params;
+    const internship = await Internship.findById(req.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
+    const author = User.findById(internship.author._id);
+    await author.updateOne({ $pull: { post: internship._id } });
+    for (let review of internship.reviews) {
+        const authorReview = User.findById(review.author._id);
+        await authorReview.updateOne({ $pull: { reviews: review._id } });
+        await Review.findByIdAndDelete(review._id);
+    }
     await Internship.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted internship')
     res.redirect('/internships');

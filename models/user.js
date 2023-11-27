@@ -7,9 +7,19 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    post:[{
+        type: Schema.Types.ObjectId,
+        ref:'Internship'
+    }],
+    reviews:[{
+        type: Schema.Types.ObjectId,
+        ref:'Review'
+    }]
 });
 
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoos,{
+    
+});
 
 module.exports = mongoose.model('User', UserSchema);

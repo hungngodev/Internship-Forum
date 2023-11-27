@@ -1519,5 +1519,8 @@ function checkGeometryTypeAndLength(arrayOfObjects) {
     }
   }
   checkGeometryTypeAndLength(internshipData);
-console.log()
+function getInternshipLinks(internships) {
+    return internships.map(internship => [internship.company,internship.location]);
+  }
+  const internshipLinks = getInternshipLinks(internshipData);
 module.exports = internshipData;
