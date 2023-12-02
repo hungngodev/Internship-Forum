@@ -1,11 +1,18 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const mongoose = require('mongoose');
-const internshipData= require('./file');
+const {internshipData,geometry}= require('./file');
 const Internship = require('../models/internship');
 const Review = require('../models/review');
 const {userData, numberOfUsers} = require('./user'); 
 const User = require('../models/user');
 const { number } = require('joi');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const imagesURL = require('./images');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -48,6 +55,10 @@ const seedDBInternship = async () => {
                     await review.save();
                     internshipReview.push(review._id);
                 }
+                const geoData = await geocoder.forwardGeocode({
+                    query: internshipData[i].location[j],
+                    limit: 1
+                }).send()
                 const camp = new Internship({
                     author: userData[random].id,
                     location: internshipData[i].location[j],
@@ -57,24 +68,18 @@ const seedDBInternship = async () => {
                     area: internshipData[i].area,
                     company: internshipData[i].company,
                     link:internshipData[i].link,
-                    geometry: {
-                        type: "Point",
-                        coordinates: [
-                            parseInt(internshipData[i].geometry[j][1]),
-                            parseInt(internshipData[i].geometry[j][0]),
+                    // geometry: {
+                    //     type: "Point",
+                    //     coordinates: [
+                    //         parseInt(internshipData[i].geometry[j][1]),
+                    //         parseInt(internshipData[i].geometry[j][0]),
+                    //         // parseInt(geometry[i][j][0]),
+                    //         // parseInt(geometry[i][j][1]),
                         
-                        ]
-                    },
-                    images: [
-                        {
-                            url: 'https://res.cloudinary.com/dj6dtuqnr/image/upload/v1700518556/samples/landscapes/landscape-panorama.jpg',
-                            filename: 'samples/landscapes'
-                        },
-                        {
-                            url: 'https://res.cloudinary.com/dj6dtuqnr/image/upload/v1700518556/samples/landscapes/landscape-panorama.jpg',
-                            filename: 'samples/landscapes'
-                        }
-                    ],
+                    //     ]
+                    // },
+                    geometry: geoData.body.features[0].geometry,
+                    imagesURL: imagesURL[i][j],
                     reviews: internshipReview
                 })
                 // const author = User.findById(userData[random].id);

@@ -1,14 +1,17 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
+const {internshipData,geometry}= require('../seeds/file');
+const {imagebank}= require('./imagebank');
 'use strict';
 let request = require('request');
 let subscriptionKey = process.env.BING_KEY;
 let endpoint = process.env.BING_ENDPOINT + '/v7.0/images/search';
 let mkt = 'en-US'
+
 searchingForImageAI = function (company, location) {
     return new Promise(function (resolve, reject) {
-        const query = `Image of company ${company} in ${location}`;
+        const query = `Image of headquarters office of ${company} in ${location}`;
         let request_params = {
             method: 'GET',
             uri: endpoint,
@@ -23,27 +26,69 @@ searchingForImageAI = function (company, location) {
         }
         request(request_params, function (error, response, body) {
             if (!error) {
-                // console.error('error:', error)
-                // console.log('original query: ' + body.queryContext.originalQuery)
-                const length = body.value.length < 3 ? body.value.length : 3;
-                const imagesURL = [];
-                for (i = 0; i < length; i++) {
-                    imagesURL.push(body.value[i].thumbnailUrl);
+                if (body){
+                    if (body.value === undefined){
+                        reject(company, location);
+                    }
+                    else{
+                        const length = body.value.length < 30? body.value.length : 30;
+                        const imagesURL = [];
+                        for (i = 0; i < length; i++) {
+                            imagesURL.push(body.value[i].thumbnailUrl);
+                        }
+                        resolve(imagesURL);
+                    }
                 }
-                resolve(imagesURL);
+                else{
+                    resultImage=[];
+                    const i = Math.floor(Math.random() * 14);
+                    for (let j=0; j<i;j++){
+                        const random = Math.floor(Math.random() * imagebank.length);
+                        while (resultImage.includes(imagebank[random])){
+                            random = Math.floor(Math.random() * imagebank.length);
+                        }
+                        resultImage.push(imagebank[random]);
+                    }
+                    resolve(imagebank);
+                }
             } else {
                 reject(error);
             }
         })
     });
 }
-async function main() {
-    try {
-        const a = await searchingForImageAI("Google", "New York");
-        console.log(a);
-        console.log("hi");
-    } catch (error) {
-        console.log(error);
-    }
-}
+// const seedDB = async () => {
+//     imagedata=[];
+//     for (let i = 70; i < internshipData.length; i++) {
+//         nestedArray=[];
+//         for (let j=0; j<internshipData[i].location.length; j++){
+//             try {
+//                 const company = internshipData[i].company;
+//                 const location = internshipData[i].location[j];
+//                 image= await searchingForImageAI(company, location);
+//                 nestedArray.push(image);
+       
+//             } catch (error) {
+//                 console.log(i,j);
+//                 console.log(error);
+//             }
+//         }
+//         imagedata.push(nestedArray);
+//     }
+//     return imagedata;
+// }
+// seedDB().then((imagedata) => {
+//     console.log(imagedata);
+// })
+// async function main() {
+//     try {
+//         const company = internshipData[5].company;
+//         const location = internshipData[5].location[0];
+//         const a = await searchingForImageAI(company, location);
+//         console.log(a);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+// main();
 module.exports= searchingForImageAI;

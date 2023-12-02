@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 const Internship = require('../models/internship');
-const searchingForImageAI = require('../BING/images');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
