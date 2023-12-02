@@ -3,6 +3,7 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
+const searchingForImageAI = require('../BING/images');
 
 
 module.exports.index = async (req, res) => {
@@ -24,6 +25,10 @@ module.exports.createInternship = async (req, res, next) => {
     internship.geometry = geoData.body.features[0].geometry;
     internship.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.author = req.user._id;
+    if (req.body.generate =="yes"){
+        AI = await searchingForImageAI(internship.company, internship.location);
+        internship.imagesURL.push(...AI);
+    }
     // user.post.push(internship);
     // await user.save();
     await internship.save();
@@ -67,6 +72,9 @@ module.exports.updateInternship = async (req, res) => {
             await cloudinary.uploader.destroy(filename);
         }
         await internship.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+    }
+    if (req.body.deleteImagesURL) {
+        await internship.updateOne({ $pull: { imagesURL:{ $in: req.body.deleteImagesURL } } } )
     }
     req.flash('success', 'Successfully updated internship!');
     res.redirect(`/internships/${internship._id}`)

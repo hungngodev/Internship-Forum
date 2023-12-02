@@ -31,9 +31,12 @@ module.exports.internshipSchema = Joi.object({
         location: Joi.string().required().escapeHTML(),
         company: Joi.string().required().escapeHTML(),
         link: Joi.string().required().escapeHTML(),
-        description: Joi.string().required().escapeHTML()
+        description: Joi.string().required().escapeHTML(),
+        state: Joi.string().escapeHTML(),
     }).required(),
-    deleteImages: Joi.array()
+    deleteImages: Joi.array(),
+    deleteImagesURL: Joi.array(),
+    generate: Joi.string()
 });
 
 module.exports.reviewSchema = Joi.object({

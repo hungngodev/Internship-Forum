@@ -108,30 +108,30 @@ body {
   }
   
   .card-group:hover > .big-card:nth-child(3) {
-    transform: translate(-200%, 170%) rotate(-64deg);
+    transform: translate(-200%, 200%) rotate(-64deg);
   }
   
   .card-group:hover > .big-card:nth-child(4) {
-    transform: translate(-150%, 110%) rotate(-38deg);
+    transform: translate(-150%, 140%) rotate(-38deg);
   }
   
   .card-group:hover > .big-card:nth-child(5) {
-    transform: translate(-80%, 67%) rotate(-22deg);
+    transform: translate(-80%, 97%) rotate(-22deg);
   }
   .card-group:hover > .big-card:nth-child(6) {
-    transform: translate(0%, 50%);
+    transform: translate(0%, 80%);
   }
   
   .card-group:hover > .big-card:nth-child(7) {
-    transform: translate(80%, 67%) rotate(22deg);
+    transform: translate(80%, 97%) rotate(22deg);
   }
   
   .card-group:hover > .big-card:nth-child(8) {
-    transform: translate(150%, 110%) rotate(38deg);
+    transform: translate(150%, 140%) rotate(38deg);
   }
   
   .card-group:hover > .big-card:nth-child(9) {
-    transform: translate(200%, 170%) rotate(64deg);
+    transform: translate(200%, 200%) rotate(64deg);
   }
   
    
@@ -147,7 +147,7 @@ body {
     text-transform: uppercase;
     text-align: center;
     width: 200px;
-    transform: translate(0%, 20%);
+    transform: translate(0%, 80%);
     font-family: Georgia, serif;
     text-decoration: none;
     z-index: 5;

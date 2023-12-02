@@ -16,6 +16,7 @@ const opts = { toJSON: { virtuals: true } };
 const InternshipSchema = new Schema({
     title: String,
     images: [ImageSchema],
+    imagesURL: [String],
     geometry: {
         type: {
             type: String,

@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="area">Area</label>
+                <label class="form-label" for="area">Area of work</label>
                 <input class="form-control" type="text" id="area" name="internship[area]"
                     value="<%=internship.area %>" required>
                 <div class="valid-feedback">
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="link">Link</label>
+                <label class="form-label" for="link">Link to the internship</label>
                 <input class="form-control" type="text" id="link" name="internship[link]"
                     value="<%=internship.link %>" required>
                 <div class="valid-feedback">
@@ -80,6 +80,7 @@
                 </div>
             </div>
             <div class="mb-3">
+
                 <% internship.images.forEach(function(img, i) {  %>
 
                 <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
@@ -88,6 +89,14 @@
                 </div>
                 <label for="image-<%=i%>">Delete?</label>
                 <% })%>
+                <% internship.imagesURL.forEach(function(img, i) {  %>
+
+                    <img src="<%=img %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="imageURL-<%=i%>" name="deleteImagesURL[]" value="<%=img%>">
+                    </div>
+                    <label for="imageURL-<%=i%>">Delete?</label>
+                    <% })%>
             </div>
             <div class="mb-3">
                 <button class="btn btn-info">Update Internship</button>

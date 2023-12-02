@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 const Internship = require('../models/internship');
+const searchingForImageAI = require('../BING/images');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -18,6 +19,9 @@ db.once("open", () => {
 
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
+function getInternshipLinks(internships) {
+    return internships.map(internship => [internship.company,internship.location]);
+  }
 
 const seedDB = async () => {
     await Internship.deleteMany({});
