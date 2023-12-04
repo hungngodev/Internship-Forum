@@ -98,7 +98,7 @@ const seedDBInternship = async () => {
     }
 }
 
-
+asdfasdfasdfasdfasdfasdf
 
 seedDBInternship().then(() => {
         mongoose.connection.close();
