@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Internship = require('../models/internship');
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
@@ -38,4 +39,12 @@ module.exports.logout = (req, res) => {
     // req.session.destroy();
     req.flash('success', "Goodbye!");
     res.redirect('/internships');
+}
+
+module.exports.index = async (req, res) => {
+    console.log("viewing profile")
+    const {id} = req.params;
+    const author = await User.findById(id);
+    const internships = await Internship.find({author: id}).populate('popupText');
+    res.render('users/profile', { data: {internships: internships, author: author}})
 }

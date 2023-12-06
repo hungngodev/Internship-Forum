@@ -4,11 +4,15 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 const searchingForImageAI = require('../BING/images');
+const areaOfWork = require('../queryData/AreaOfWorkDoughnut');
+const bar = require('../queryData/LocationBar');
 
 
 module.exports.index = async (req, res) => {
-    const internships = await Internship.find({}).populate('popupText');
-    res.render('internships/index', { internships })
+    const internships = await Internship.find({}).populate('popupText').populate('reviews');
+    const barChart = await bar(internships);
+    const areaClass = await areaOfWork(internships);
+    res.render('internships/index', { data: {internships: internships , areaClass: areaClass, bar:barChart}})
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -62,7 +66,6 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateInternship = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body);
     const internship = await Internship.findByIdAndUpdate(id, { ...req.body.internship });
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.images.push(...imgs);
@@ -95,6 +98,11 @@ module.exports.deleteInternship = async (req, res) => {
     //     await authorReview.updateOne({ $pull: { reviews: review._id } });
     //     await Review.findByIdAndDelete(review._id);
     // }
+    const internship = await Internship.findById(id);
+    const images = internship.images.map(i => i.filename);
+    for (let filename of images) {
+        await cloudinary.uploader.destroy(filename);
+    }
     await Internship.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted internship')
     res.redirect('/internships');
