@@ -26,6 +26,7 @@
     "helmet": "^4.1.1",
     "https": "^1.0.0",
     "joi": "^17.2.1",
+    "jquery-parallax.js": "^1.5.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.4",
     "ms-rest-azure": "^3.0.2",

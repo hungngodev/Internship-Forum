@@ -1,5 +1,4 @@
 mapboxgl.accessToken = mapToken;
-console.log(internships);
 const map = new mapboxgl.Map({
     container: 'cluster-map',
     style: 'mapbox://styles/mapbox/streets-v12',

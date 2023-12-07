@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 const mongoose = require('mongoose');
-const {internshipData,geometry}= require('./file');
+const {internshipData}= require('./file');
 const Internship = require('../models/internship');
 const Review = require('../models/review');
 const {userData, numberOfUsers} = require('./user'); 

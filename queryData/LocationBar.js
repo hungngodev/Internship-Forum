@@ -47,68 +47,68 @@ async function bar(internships) {
             const averagesalary = keys.map(key => locations[key].salary / locations[key].count);
             const averageReview = keys.map(key => locations[key].review * 5 / locations[key].count);
             const counts = keys.map(key => locations[key].count);
+            const result ={ averageReview: averageReview, counts: counts, averagesalary: averagesalary, keys: keys };
+            // const QuickChart = require('quickchart-js');
+            // const chart = new QuickChart();
+            // chart.setWidth(1600)
+            // chart.setHeight(700);
+            // chart.setVersion('2');
+            // chart.setConfig({
+            //     "type": "bar",
+            //     "data": {
+            //         "labels": Object.keys(locations),
+            //         "datasets": [
+            //             {
+            //                 "type": "line",
+            //                 "label": "Average Rating on scale of 25",
+            //                 "borderColor": "rgb(54, 162, 235)",
+            //                 "borderWidth": 2,
+            //                 "fill": false,
+            //                 "data": averageReview,
+            //             },
+            //             {
+            //                 "type": "bar",
+            //                 "label": "Number of Internships of this location",
+            //                 "backgroundColor": "rgb(255, 99, 132)",
+            //                 "data": counts,
+            //                 "borderColor": "white",
+            //                 "borderWidth": 2
+            //             },
+            //             {
+            //                 "type": "bar",
+            //                 "label": "Average Salary of this location ($/h)",
+            //                 "backgroundColor": "rgb(75, 192, 192)",
+            //                 "data": averagesalary,
+            //             }
+            //         ]
+            //     },
+            //     "options": {
+            //         "responsive": true,
+            //         "title": {
+            //             fontSize: 50,
+            //             fontFamily: 'Serif',
+            //             fontColor: '#000',
+            //             "display": true,
+            //             "text": "Internships based on Location Combo Bar Line Chart of this Forum",
+            //         },
+            //         legend: {
+            //             labels: {
+            //                 fontSize: 20,
+            //             }
+            //         },
 
-            const QuickChart = require('quickchart-js');
-            const chart = new QuickChart();
-            chart.setWidth(1600)
-            chart.setHeight(700);
-            chart.setVersion('2');
-            chart.setConfig({
-                "type": "bar",
-                "data": {
-                    "labels": Object.keys(locations),
-                    "datasets": [
-                        {
-                            "type": "line",
-                            "label": "Average Rating on scale of 25",
-                            "borderColor": "rgb(54, 162, 235)",
-                            "borderWidth": 2,
-                            "fill": false,
-                            "data": averageReview,
-                        },
-                        {
-                            "type": "bar",
-                            "label": "Number of Internships of this location",
-                            "backgroundColor": "rgb(255, 99, 132)",
-                            "data": counts,
-                            "borderColor": "white",
-                            "borderWidth": 2
-                        },
-                        {
-                            "type": "bar",
-                            "label": "Average Salary of this location ($/h)",
-                            "backgroundColor": "rgb(75, 192, 192)",
-                            "data": averagesalary,
-                        }
-                    ]
-                },
-                "options": {
-                    "responsive": true,
-                    "title": {
-                        fontSize: 50,
-                        fontFamily: 'Serif',
-                        fontColor: '#000',
-                        "display": true,
-                        "text": "Internships based on Location Combo Bar Line Chart of this Forum",
-                    },
-                    legend: {
-                        labels: {
-                            fontSize: 20,
-                        }
-                    },
-
-                    datalabels: {
-                        color: "white",
-                        fontSize: 50,
-                    },
-                    "tooltips": {
-                        "mode": "index",
-                        "intersect": true
-                    }
-                }
-            });
-            const chartUrl = chart.getUrl();
-            resolve(chartUrl);
+            //         datalabels: {
+            //             color: "white",
+            //             fontSize: 50,
+            //         },
+            //         "tooltips": {
+            //             "mode": "index",
+            //             "intersect": true
+            //         }
+            //     }
+            // });
+            // const chartUrl = chart.getUrl();
+            resolve(result);
         } catch (error) {
             reject(error);
         }

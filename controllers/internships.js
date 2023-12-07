@@ -11,8 +11,8 @@ const bar = require('../queryData/LocationBar');
 module.exports.index = async (req, res) => {
     const internships = await Internship.find({}).populate('popupText').populate('reviews');
     const barChart = await bar(internships);
-    const areaClass = await areaOfWork(internships);
-    res.render('internships/index', { data: {internships: internships , areaClass: areaClass, bar:barChart}})
+    const doughnutChart = await areaOfWork(internships);
+    res.render('internships/index', { data: {internships: internships , doughnut: doughnutChart, bar:barChart}})
 }
 
 module.exports.renderNewForm = (req, res) => {
