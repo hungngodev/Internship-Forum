@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate')%>
-
+<link rel="stylesheet" href="/stylesheets/index.css" />
 <div class="container d-flex justify-content-center align-items-center mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
@@ -7,10 +7,10 @@
                 <img src="https://t4.ftcdn.net/jpg/03/11/50/71/360_F_311507184_0mErEL2kUw7z4AbXhsxPjFE7hQnY7BLy.jpg"
                     alt="" class="card-img-top" />
                 <div class="card-body">
-                    <h5 class="card-title">Login</h5>
+                    <h5 class="card-title title">Login</h5>
                     <form action="/login" method="POST" class="validated-form" novalidate>
                         <div class="mb-3">
-                            <label class="form-label" for="username">Username</label>
+                            <label class="form-label minor" for="username">Username</label>
                             <input class="form-control" type="text" id="username" name="username" autofocus required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -18,13 +18,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label minor" for="password">Password</label>
                             <input class="form-control" type="password" id="password" name="password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
-                        <button class="btn btn-success btn-block">Login</button>
+                        <button class="btn btn-success btn-block viewButton">Login</button>
                     </form>
                 </div>
             </div>

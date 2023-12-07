@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/show.css" />
 <link rel="stylesheet" href="/stylesheets/stars.css">
 <div class="row">
     <div class="col-6">
@@ -29,25 +30,25 @@
             <% } %>
         </div>
 
-        <div class="card mb-3">
+        <div class="card mb-3 mainPage">
             <div class="card-body">
-                <h5 class="card-title"><%= internship.title%></h5>
-                <p class="card-text"><%= internship.description%></p>
+                <h5 class="card-title title "><%= internship.title%></h5>
+                <p class="card-text description "><%= internship.description%></p>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted"><%= internship.location%></li>
-                <li class="list-group-item text-muted"><%= internship.area%></li>
-                <li class="list-group-item text-muted"><%= internship.company%></li>
+            <ul class="list-group list-group-flush ">
+                <li class="list-group-item minor "><%= internship.location%></li>
+                <li class="list-group-item minor "><%= internship.area%></li>
+                <li class="list-group-item minor"><%= internship.company%></li>
             <%  if(internship.salary ==0 || internship.salary==null)  {%> 
-                <li class="list-group-item ">Unspecified Pay</li>
+                <li class="list-group-item minor">Unspecified Pay</li>
             <% }else { %>
-                <li class="list-group-item ">$<%= internship.salary%>/hr</li>
+                <li class="list-group-item minor">$<%= internship.salary%>/hr</li>
             <% } %>
-                <li class="list-group-item">Submitted by <a href="/profile/<%= internship.author._id %>"><%= internship.author.username%></a></li>
-                <li class="list-group-item"><a href="<%=internship.link%>" class="card-link btn btn-primary">The hiring link</a></li>
+                <li class="list-group-item minor ">Submitted by <a class="profile" href="/profile/<%= internship.author._id %>"><%= internship.author.username%></a></li>
+                <li class="list-group-item Fbutton minor"><a href="<%=internship.link%>" class="card-link btn btn-primary">The hiring link</a></li>
             </ul>
             <%  if( currentUser && internship.author.equals(currentUser._id))  {%>
-            <div class="card-body">
+            <div class="card-body inside">
                 <a class="card-link btn btn-info" href="/internships/<%=internship._id%>/edit">Edit</a>
                 <form class="d-inline" action="/internships/<%=internship._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete</button>
@@ -64,7 +65,7 @@
         <div id='map' ></div>
 
         <% if(currentUser){ %>
-        <h2>Leave a Review</h2>
+        <h2 class ="title">Leave a Review</h2>
         <form action="/internships/<%=internship._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <!-- <div class="mb-3">
                 <label class="form-label" for="rating">Rating</label>
@@ -85,24 +86,23 @@
                 <label for="first-rate5" title="Amazing">5 stars</label>
             </fieldset>
             <div class="mb-3">
-                <label class="form-label" for="body">Review Text</label>
+                <label class="form-label description" for="body">Review Text</label>
                 <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-success FButton">Submit</button>
         </form>
         <% } %>
         <% for(let review of internship.reviews) { %>
         <div class="card mb-3 ">
             <div class="card-body">
-                <h5 class="card-title"> <%= review.author.username%></h5>
+                <h5 class="card-title"><a class="profile" href="/profile/<%= review.author._id %>"><%= review.author.username%></a></h5>
                 <p class="starability-result" data-rating="<%=review.rating%>">
                     Rated: <%= review.rating %> stars
                 </p>
-                <!-- <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.username%></h6> -->
-                <p class="card-text">Review: <%= review.body %></p>
+                <p class="card-text minor">Review: <%= review.body %></p>
                 <%  if( currentUser && review.author.equals(currentUser._id))  {%>
                 <form action="/internships/<%=internship._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>

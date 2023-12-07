@@ -14,6 +14,7 @@ body {
 .mainPage{
 	background-image: url('https://img.freepik.com/premium-photo/wallpaper-simple-solid-color-background-flat-image-dark-tones_780838-7386.jpg');
 }
+
 .title {
 	font-size: 2.1rem;
 	color:#00ff9f;
@@ -32,9 +33,16 @@ body {
 	color:#FFf;
 	font-style: oblique 50deg;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: transparent;
+}
+.profile {
+    font-size: 1.5rem;
+    color: #F1FA8C;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
 }
  
-.viewButton {
+.FButton {
 	background-color: #BD93F9;
 	color: #F1FA8C;
 	border: none;
@@ -46,31 +54,4 @@ body {
 	font-size: 1rem;
 	margin: 4px 2px;
 	cursor: pointer;
-}
-h1 {
-	font-size: 4rem;
-	color: #BD93F9;
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	text-decoration: none;
-	font-weight: bold;
-}
-.profile {
-    font-size: 5rem;
-    color: #F1FA8C;
-    font-family: 'Courier New', Courier, monospace;
-    text-decoration: none;
-}
-.profile1 {
-    font-size: 2rem;
-    color: #00ff9f;
-    font-family: 'Courier New', Courier, monospace;
-	text-decoration: none;
-}
-.subTitle{
-	font-size: 2.5rem;
-	color: #FF79C6;
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	text-decoration: none;
-	font-weight: bold;
-	margin-bottom: 20px;
 }

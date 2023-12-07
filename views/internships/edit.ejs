@@ -1,11 +1,12 @@
 <% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/index.css" />
 <div class="row">
-    <h1 class="text-center">Edit Internship</h1>
-    <div class="col-md-6 offset-md-3">
+    <h1 class="text-center title">Edit Internship</h1>
+    <div class="col-md-6 offset-md-3 mainPage">
         <form action="/internships/<%=internship._id%>?_method=PUT" method="POST" novalidate class="validated-form"
             enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
+                <label class="form-label minor" for="title">Title</label>
                 <input class="form-control" type="text" id="title" name="internship[title]"
                     value="<%=internship.title %>" required>
                 <div class="valid-feedback">
@@ -13,7 +14,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="location">Location</label>
+                <label class="form-label minor" for="location">Location</label>
                 <input class="form-control" type="text" id="location" name="internship[location]"
                     value="<%=internship.location %>" required>
                 <div class="valid-feedback">
@@ -22,7 +23,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="state" class="col-sm-2 control-label">State</label>
+                <label for="state" class="col-sm-2 control-label minor">State</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="state" name="internship[state]" value= "N/A"required>
                         <option value="N/A">N/A</option>
@@ -86,7 +87,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="area">Area of work</label>
+                <label class="form-label minor" for="area">Area of work</label>
                 <input class="form-control" type="text" id="area" name="internship[area]"
                     value="<%=internship.area %>" required>
                 <div class="valid-feedback">
@@ -95,7 +96,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="company">Company</label>
+                <label class="form-label minor" for="company">Company</label>
                 <input class="form-control" type="text" id="company" name="internship[company]"
                     value="<%=internship.company %>" required>
                 <div class="valid-feedback">
@@ -105,7 +106,7 @@
 
 
             <div class="mb-3">
-                <label class="form-label" for="salary">Internship Salary</label>
+                <label class="form-label minor" for="salary">Internship Salary</label>
                 <div class="input-group">
                     <span class="input-group-text" id="salary-label">$/hr</span>
                     <input type="text" class="form-control" id="salary" placeholder="0.00" aria-label="salary"
@@ -117,7 +118,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
+                <label class="form-label minor" for="description">Description</label>
                 <textarea class="form-control" type="text" id="description" name="internship[description]"
                     required><%= internship.description%></textarea>
                 <div class="valid-feedback">
@@ -125,7 +126,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="link">Link to the internship</label>
+                <label class="form-label minor" for="link">Link to the internship</label>
                 <input class="form-control" type="text" id="link" name="internship[link]"
                     value="<%=internship.link %>" required>
                 <div class="valid-feedback">
@@ -137,7 +138,7 @@
             <div class="mb-3">
                 <div class="form-file custom-file">
                     <input type="file" class="form-file-input" id="image" name="image" multiple>
-                    <label class="form-file-label" for="image">
+                    <label class="form-file-label minor" for="image">
                         <span class="form-file-text custom-file-label">Add more image(s)...</span>
                         <span class="form-file-button">Browse</span>
                     </label>
@@ -151,7 +152,7 @@
                 <div class="form-check-inline">
                     <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
                 </div>
-                <label for="image-<%=i%>">Delete?</label>
+                <label for="image-<%=i%>" class="minor">Delete?</label>
                 <% })%>
                 <% internship.imagesURL.forEach(function(img, i) {  %>
 
@@ -159,14 +160,14 @@
                     <div class="form-check-inline">
                         <input type="checkbox" id="imageURL-<%=i%>" name="deleteImagesURL[]" value="<%=img%>">
                     </div>
-                    <label for="imageURL-<%=i%>">Delete?</label>
+                    <label for="imageURL-<%=i%>" class="minor">Delete?</label>
                     <% })%>
             </div>
             <div class="mb-3">
-                <button class="btn btn-info">Update Internship</button>
+                <button class="btn btn-info viewButton">Update Internship</button>
             </div>
         </form>
-        <a href="/internships/<%= internship._id%>">Back To Internship</a>
+        <a href="/internships/<%= internship._id%>" class="profile1">Back To Internship</a>
 
     </div>
 </div>

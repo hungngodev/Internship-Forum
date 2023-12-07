@@ -10,7 +10,7 @@ const data = {
         {
             label: "Average Salary ($/h)",
             data: salary,
-
+    
         },
         {
             label: 'Number of Internships',
@@ -35,6 +35,7 @@ const config = {
             legend: {
                 position: 'top',
                 labels: {
+                    color: '#F8F8F2',
                     font: {
                         size: 30
                     }
@@ -42,27 +43,42 @@ const config = {
             },
             title: {
                 display: true,
+                color: '#00ff9f',
                 text: 'Combo Bar Line Chart of this Forum',
                 font: {
                     size: 50,
                     weight: 'bold',
                 }
             }
-        }
+        },
+        animations: {
+            tension: {
+              duration: 2000,
+              easing: 'linear',
+              from: 1,
+              to: 0,
+              loop: true
+            },
+            onProgress: function(animation) {
+                progress.value = animation.currentStep / animation.numSteps;
+            }
+        },
     }
 };
+
 const ctx = document.getElementById('BarLineChart');
 new Chart(ctx, config);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const doughtnutlabels = ChartData.labels1;
 const doughnutdata = ChartData.data1;
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  }  
+}
 const backgroundColor1 = [
     'rgb(255, 0, 0)',         // Red
     'rgb(255, 3, 33)',
@@ -102,7 +118,7 @@ const backgroundColor1 = [
     'rgb(54, 88, 130)',
     'rgb(45, 79, 109)',
     'rgb(42, 69, 88)'
-  ];
+];
 const doughnutdatachart = {
     labels: doughtnutlabels,
     datasets: [
@@ -123,6 +139,7 @@ const config1 = {
             legend: {
                 position: 'top',
                 labels: {
+                    color: '#F8F8F2',
                     font: {
                         size: 15
                     }
@@ -131,6 +148,7 @@ const config1 = {
             title: {
                 display: true,
                 text: 'Doughnut Chart of this Forum',
+                color: '#00ff9f',
                 font: {
                     size: 50,
                     weight: 'bold',
@@ -140,4 +158,31 @@ const config1 = {
     },
 };
 const ctx2 = document.getElementById('DoughnutChart');
-new Chart(ctx2, config1);
+const canvas = ctx.getContext('2d');
+let percentage=0;
+let diff;
+function progressBar(){
+    const {canvas: {width, height}} = canvas;
+    const angle= Math.PI/180;
+    diff= ((percentage/100)*angle*360*10).toFixed(2);
+    canvas.clearRect(0,0,width,height);
+    canvas.fillStyle='#00ff9f';
+    canvas.font='bold 50px Arial';
+    canvas.fillText(`${percentage} %`,width/2, height/2) ;
+    canvas.beginPath();
+    const radius= height*0.4;
+    canvas.strokeStyle = '#00ff9f';
+    canvas.lineWidth = 10;
+    canvas.arc(width/2,height/2,angle *270, diff/10+angle*270,false);
+    canvas.stroke();
+    if(percentage>=100){
+        clearTimeout(sim);
+        drawChart();
+    }
+    percentage++;
+    }
+const sim = setInterval(progressBar, 10);
+function drawChart(){
+    const myChart = new Chart(document.getElementById('DoughnutChart'), config1);
+}
+progressBar();

@@ -42,8 +42,17 @@ async function bar(internships) {
                     locations[states].review += review;
                 }
             }
-            const keys = Object.keys(locations);
-
+            let keys = Object.keys(locations);
+            keys.sort();
+            function swapFirstWithMiddle(arr) {
+                const length = arr.length;
+                const middleIndex = Math.floor(length / 2);
+                const temp = arr[0];
+                arr[0] = arr[middleIndex];
+                arr[middleIndex] = temp;
+                return arr;
+              }
+            keys = swapFirstWithMiddle(keys);
             const averagesalary = keys.map(key => locations[key].salary / locations[key].count);
             const averageReview = keys.map(key => locations[key].review * 5 / locations[key].count);
             const counts = keys.map(key => locations[key].count);

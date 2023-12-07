@@ -5,8 +5,8 @@
   const internships = { features: <%- JSON.stringify(data.internships) %>}
 </script>
 <div class="container mainPage">
-  <h1>Profile of <%= data.author.username %> </h1>
-  <h2>Number of posts: <%= data.internships.length %></h2>
+  <h1 class="" >Profile of         <span class="profile"><%=data.author.username %> </span></h1>
+  <h2 class="subTitle">Number of posts: <%= data.internships.length %></h2>
   <% internships = data.internships; %> 
   <% for (let internship of internships){%>
   <div class="card mb-3">
@@ -26,28 +26,28 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title"><%= internship.title %></h5>
+          <h5 class="card-title title"><%= internship.title %></h5>
 
-          <p class="card-text"><%= internship.description %></p>
+          <p class="card-text description"><%= internship.description %></p>
           <p class="card-text">
-            <small class="text-muted"><%= internship.location%></small>
+            <small class="minor"><%= internship.location%></small>
           </p>
           <p class="card-text">
-            <small class="text-muted"><%= internship.area%></small>
+            <small class="minor"><%= internship.area%></small>
           </p>
           <p class="card-text">
-            <small class="text-muted"><%= internship.company%></small>
+            <small class="minor"><%= internship.company%></small>
           </p>
           <% if(internship.salary ==0 || internship.salary==null) {%>
           <p class="card-text">
-            <small class="text-muted">Unspecified Pay</small>
+            <small class="minor">Unspecified Pay</small>
           </p>
           <% }else { %>
           <p class="card-text">
-            <small class="text-muted">$<%= internship.salary%>/hr</small>
+            <small class="minor">$<%= internship.salary%>/hr</small>
           </p>
           <% } %>
-          <a class="btn btn-primary" href="/internships/<%=internship._id%>"
+          <a class="btn btn-primary viewButton" href="/internships/<%=internship._id%>"
             >View</a
           >
         </div>

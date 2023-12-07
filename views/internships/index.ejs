@@ -1,91 +1,94 @@
 
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/index.css" />
-<div id="cluster-map"></div>
+<div  class="backgroundIndex">
+  <div id="cluster-map"></div>
 
-<script>
-  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-  const internships = { features: <%- JSON.stringify(data.internships) %>}
-  const ChartData = {keys: <%- JSON.stringify(data.bar.keys) %>, 
-                      counts: <%- JSON.stringify(data.bar.counts) %>,
-                      averagesalary: <%- JSON.stringify(data.bar.averagesalary) %>,
-                      averageReview: <%- JSON.stringify(data.bar.averageReview) %>,
-                      labels1: <%- JSON.stringify(data.doughnut.labels1) %>,
-                        data1: <%- JSON.stringify(data.doughnut.data1) %>,
-                };
-  
-</script>
-<div id="indexCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <canvas id = "BarLineChart"></canvas>
-        </div>
-        <div class="carousel-item " >
-          <canvas id = "DoughnutChart"></canvas>
-        </div>
-    </div>
-    <a class="carousel-control-prev " href="#indexCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next " href="#indexCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
-</div>
-<div class="container mainPage">
-  <h1>All Internships</h1>
-  <% internships = data.internships; %> <% for (let internship of
-  internships){%>
-  <div class="card mb-3">
-    <div class="row">
-      <div class="col-md-4">
-        <%if(internship.images.length) {%>
-        <img class="img-fluid" alt="" src="<%=internship.images[0].url%>" />
-        <% }else if(internship.imagesURL.length){%>
-        <img class="img-fluid" alt="" src="<%=internship.imagesURL[Math.floor(Math.random() * (20 - 1 + 1)) + 1]%>" />
-        <% }else {%>
-        <img
-          class="img-fluid"
-          alt=""
-          src="https://files.nc.gov/dhhs/styles/event_image/public/images/2023-04/Internship1.jpg?VersionId=wj4ZEZG.nM0C8BQ9a2PZLY0_Bk_PFjuC&itok=bFGXPWTV"
-        />
-        <% } %>
+  <script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const internships = { features: <%- JSON.stringify(data.internships) %>}
+    const ChartData = {keys: <%- JSON.stringify(data.bar.keys) %>, 
+                        counts: <%- JSON.stringify(data.bar.counts) %>,
+                        averagesalary: <%- JSON.stringify(data.bar.averagesalary) %>,
+                        averageReview: <%- JSON.stringify(data.bar.averageReview) %>,
+                        labels1: <%- JSON.stringify(data.doughnut.labels1) %>,
+                          data1: <%- JSON.stringify(data.doughnut.data1) %>,
+                  };
+    
+  </script>
+  <div id="indexCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+          <div class="carousel-item active " data-interval="10000">
+              <canvas id = "BarLineChart"></canvas>
+          </div>
+          <div class="carousel-item " data-interval="10000">
+            <canvas id = "DoughnutChart"></canvas>
+          </div>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%= internship.title %></h5>
-
-          <p class="card-text"><%= internship.description %></p>
-          <p class="card-text">
-            <small class="text-muted"><%= internship.location%></small>
-          </p>
-          <p class="card-text">
-            <small class="text-muted"><%= internship.area%></small>
-          </p>
-          <p class="card-text">
-            <small class="text-muted"><%= internship.company%></small>
-          </p>
-          <% if(internship.salary ==0 || internship.salary==null) {%>
-          <p class="card-text">
-            <small class="text-muted">Unspecified Pay</small>
-          </p>
-          <% }else { %>
-          <p class="card-text">
-            <small class="text-muted">$<%= internship.salary%>/hr</small>
-          </p>
-          <% } %>
-          <a class="btn btn-primary" href="/internships/<%=internship._id%>"
-            >View</a
-          >
-        </div>
-      </div>
-    </div>
+      <a class="carousel-control-prev " href="#indexCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next " href="#indexCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
   </div>
-  <% }%>
+  
+  </div>
+  <div class="container mainPage">
+    <h1>All Internships</h1>
+    <% internships = data.internships; %> <% for (let internship of
+    internships){%>
+    <div class="card mb-3">
+      <div class="row">
+        <div class="col-md-4">
+          <%if(internship.images.length) {%>
+          <img class="img-fluid" alt="" src="<%=internship.images[0].url%>" />
+          <% }else if(internship.imagesURL.length){%>
+          <img class="img-fluid" alt="" src="<%=internship.imagesURL[Math.floor(Math.random() * (20 - 1 + 1)) + 1]%>" />
+          <% }else {%>
+          <img
+            class="img-fluid"
+            alt=""
+            src="https://files.nc.gov/dhhs/styles/event_image/public/images/2023-04/Internship1.jpg?VersionId=wj4ZEZG.nM0C8BQ9a2PZLY0_Bk_PFjuC&itok=bFGXPWTV"
+          />
+          <% } %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title title"><%= internship.title %></h5>
+  
+            <p class="card-text description"><%= internship.description %></p>
+            <p class="card-text">
+              <small class=" minor"><%= internship.location%></small>
+            </p>
+            <p class="card-text">
+              <small class=" minor"><%= internship.area%></small>
+            </p>
+            <p class="card-text">
+              <small class=" minor "><%= internship.company%></small>
+            </p>
+            <% if(internship.salary ==0 || internship.salary==null) {%>
+            <p class="card-text">
+              <small class=" minor">Unspecified Pay</small>
+            </p>
+            <% }else { %>
+            <p class="card-text">
+              <small class=" minor">$<%= internship.salary%>/hr</small>
+            </p>
+            <% } %>
+            <a class="btn btn-primary viewButton" href="/internships/<%=internship._id%>"
+              >View</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }%>
+  </div>
+  <script src="/javascripts/clusterMap.js"></script>
+  <script src="/javascripts/chart.js"></script>
+  <script src="/javascripts/index.js"></script>
+  
 </div>
-<script src="/javascripts/clusterMap.js"></script>
-<script src="/javascripts/chart.js"></script>
-<script src="/javascripts/index.js"></script>
