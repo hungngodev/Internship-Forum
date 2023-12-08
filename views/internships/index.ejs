@@ -3,19 +3,6 @@
 <link rel="stylesheet" href="/stylesheets/index.css" />
 <div  class="backgroundIndex">
   <div id="cluster-map"></div>
-
-  <script>
-    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const internships = { features: <%- JSON.stringify(data.internships) %>}
-    const ChartData = {keys: <%- JSON.stringify(data.bar.keys) %>, 
-                        counts: <%- JSON.stringify(data.bar.counts) %>,
-                        averagesalary: <%- JSON.stringify(data.bar.averagesalary) %>,
-                        averageReview: <%- JSON.stringify(data.bar.averageReview) %>,
-                        labels1: <%- JSON.stringify(data.doughnut.labels1) %>,
-                          data1: <%- JSON.stringify(data.doughnut.data1) %>,
-                  };
-    
-  </script>
   <div id="indexCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
           <div class="carousel-item active " data-interval="10000">
@@ -87,8 +74,23 @@
     </div>
     <% }%>
   </div>
+
+
+  <script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const internships = { features: <%- JSON.stringify(data.internships) %>}
+  </script>
   <script src="/javascripts/clusterMap.js"></script>
+  <% if(data.internships.length!=0) {%>
+  <script>
+    const ChartData = {keys: <%- JSON.stringify(data.bar.keys) %>, 
+      counts: <%- JSON.stringify(data.bar.counts) %>,
+      averagesalary: <%- JSON.stringify(data.bar.averagesalary) %>,
+      averageReview: <%- JSON.stringify(data.bar.averageReview) %>,
+      labels1: <%- JSON.stringify(data.doughnut.labels1) %>,
+        data1: <%- JSON.stringify(data.doughnut.data1) %>,};
+  </script>
   <script src="/javascripts/chart.js"></script>
   <script src="/javascripts/index.js"></script>
-  
+  <% } %>
 </div>

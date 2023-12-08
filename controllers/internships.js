@@ -10,9 +10,13 @@ const bar = require('../queryData/LocationBar');
 
 module.exports.index = async (req, res) => {
     const internships = await Internship.find({}).populate('popupText').populate('reviews');
+    if (internships.length != 0){
     const barChart = await bar(internships);
     const doughnutChart = await areaOfWork(internships);
     res.render('internships/index', { data: {internships: internships , doughnut: doughnutChart, bar:barChart}})
+    } else {
+        res.render('internships/index', { data: {internships: internships}})
+    }
 }
 
 module.exports.renderNewForm = (req, res) => {

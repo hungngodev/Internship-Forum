@@ -1540,5 +1540,5 @@ const internshipData = [
 //   }
 // addingImage(internshipData);
 // console.log(internshipData);
-console.log(internshipData);
+
 module.exports.internshipData = internshipData;
