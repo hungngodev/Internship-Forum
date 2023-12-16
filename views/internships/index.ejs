@@ -46,7 +46,7 @@
           <div class="card-body">
             <h5 class="card-title title"><%= internship.title %></h5>
   
-            <p class="card-text description"><%= internship.description %></p>
+            <p class="card-text description"><%= internship.description.slice(0,250) + "..." %></p>
             <p class="card-text">
               <small class=" minor"><%= internship.location%></small>
             </p>
