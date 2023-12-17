@@ -186,3 +186,5 @@ function drawChart(){
     const myChart = new Chart(document.getElementById('DoughnutChart'), config1);
 }
 progressBar();
+
+
