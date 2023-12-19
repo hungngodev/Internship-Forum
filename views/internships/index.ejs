@@ -11,13 +11,33 @@
     </div>
     <% } %>
   <div id="cluster-map"></div>
-  <div id="indexCarousel" class="carousel slide" data-ride="carousel">
+  <!-- <div > <div style="position:relative; padding-top:79.5%"> <iframe style="position:absolute; top:0; left:0; width:100%; height:90%" src="https://www.zippia.com/widgets/best-states-map/software-engineer/" frameborder="no" scrolling="no"></iframe> </div> </div>
+  <div id="indexCarousel" class="carousel slide" data-interval="false">
       <div class="carousel-inner">
-          <div class="carousel-item active " data-interval="10000">
+          <div class="carousel-item active "  >
               <canvas id = "BarLineChart"></canvas>
           </div>
-          <div class="carousel-item " data-interval="10000">
+          <div class="carousel-item" >
             <canvas id = "DoughnutChart"></canvas>
+          </div>
+          <div class="carousel-item text-center" >
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+              <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a href="#about">About</a>
+                <a href="#base">Base</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <a href="#custom">Custom</a>
+                <a href="#support">Support</a>
+                <a href="#tools">Tools</a>
+              </div>
+            </div>
+            <canvas id = "DoughnutChart"></canvas>
+          </div>
+          <div class="carousel-item">
+          
           </div>
       </div>
       <a class="carousel-control-prev " href="#indexCarousel" role="button" data-slide="prev">
@@ -28,13 +48,13 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
       </a>
-  </div>
+  </div> -->
   
   </div>
   <div class="container mainPage">
     <h1>All Internships</h1>
-    <% internships = data.internships; %> <% for (let internship of
-    internships){%>
+    <% internships = data.internships; %> 
+    <% for (let internship of internships){%>
     <div class="card mb-3">
       <div class="row">
         <div class="col-md-4">

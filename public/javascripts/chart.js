@@ -31,13 +31,40 @@ const config = {
     data: data,
     options: {
         responsive: true,
+        scales: {
+            x: {
+              grid: {
+                tickColor: '#FF79C6'
+              },
+              ticks: {
+                color: '#8BE9FD',
+                font :{
+                    size: 20,
+                    family: 'Georgia, serif'    
+                }
+              }
+            },
+            y: {
+                grid: {
+                  tickColor: '#FF79C6'
+                },
+                ticks: {
+                  color: '#8BE9FD',
+                  font :{
+                      size: 20,
+                      family: 'Georgia, serif'    
+                  }
+                }
+              }
+          },
         plugins: {
             legend: {
                 position: 'top',
                 labels: {
                     color: '#F8F8F2',
                     font: {
-                        size: 30
+                        size: 30,
+                        family: 'Georgia, serif'    
                     }
                 }
             },
@@ -129,6 +156,21 @@ const doughnutdatachart = {
         }
     ]
 };
+
+const  centerText=  {
+    id: 'centerText',
+    afterDatasetsDraw(chart, args, options) {
+        const {ctx, chartArea: {left, right, top, bottom, width, height}} = chart;
+        ctx.save();
+        const number = doughnutdata.length;
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#00ff9f';
+        ctx.font= 'bold 15px Arial';
+        ctx.fillText('#Internships: '+number, width/2, height/2+top);
+        ctx.restore();
+
+    }
+}
 const config1 = {
     type: 'doughnut',
     data: doughnutdatachart,
@@ -138,10 +180,13 @@ const config1 = {
         plugins: {
             legend: {
                 position: 'top',
+                align:' end',
+                padding: 100,
                 labels: {
                     color: '#F8F8F2',
                     font: {
-                        size: 15
+                        size: 15,
+                        family: 'Georgia, serif'    
                     }
                 }
             },
@@ -153,11 +198,16 @@ const config1 = {
                     size: 50,
                     weight: 'bold',
                 }
-            }
+            },
+            deferred: {
+                xOffset: 150,   // defer until 150px of the canvas width are inside the viewport
+                yOffset: '50%', // defer until 50% of the canvas height are inside the viewport
+                delay: 2000,   // delay of 500 ms after the canvas is considered inside the viewport
+              },
         },
     },
+    plugins: [centerText],
 };
-const ctx2 = document.getElementById('DoughnutChart');
 const canvas = ctx.getContext('2d');
 let percentage=0;
 let diff;
@@ -187,4 +237,98 @@ function drawChart(){
 }
 progressBar();
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const resultData = ChartData.radar.result;
+function createRadar(company1="Apple",company2= "Microsoft"){
+    company1 = company1 in resultData ? company1 : "Apple";
+    company2 = company2 in resultData ? company2 : "Microsoft";
+    const radardata = {
+        labels: [
+          'Number of Internships ',
+            'Average Rating (scale of 50)',
+            'Average Salary',
+        ],
+        datasets: [{
+          label: company1,
+          data: [resultData[company1].count*10, resultData[company1].averageRating*10, resultData[company1].averageSalary],
+          fill: true,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgb(255, 99, 132)',
+          pointBackgroundColor: 'rgb(255, 99, 132)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }, {
+          label: company2,
+          data: [resultData[company2].count*10, resultData[company2].averageRating*10, resultData[company2].averageSalary],
+          fill: true,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgb(54, 162, 235)',
+          pointBackgroundColor: 'rgb(54, 162, 235)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(54, 162, 235)'
+        }]
+      };
+    const radarconfig = {
+        type: 'radar',
+        data: radardata,
+        options: {
+          elements: {
+            line: {
+              borderWidth: 3
+            }
+          },
+          scales: {
+            r: {
+              pointLabels: {
+                color: '#8BE9FD',
+                font: {
+                    size: 25,
+                    family: 'Georgia, serif'
+                }
+              },
+              angleLines: {
+                color: '#50FA7B'
+              }
+            }
+          },
+          aspectRatio: 1.5,
+          responsive: true,
+          plugins: {
+              legend: {
+                  position: 'top',
+                  align:' end',
+                  padding: 100,
+                  labels: {
+                      color: '#F8F8F2',
+                      font: {
+                          size: 35
+                      }
+                  }
+              },
+              title: {
+                  display: true,
+                  text: 'Comparison of two Companies',
+                  color: '#00ff9f',
+                  font: {
+                      size: 50,
+                      weight: 'bold',
+                  }
+              },
+              deferred: {
+                  xOffset: 150,   // defer until 150px of the canvas width are inside the viewport
+                  yOffset: '50%', // defer until 50% of the canvas height are inside the viewport
+                  delay: 2000,   // delay of 500 ms after the canvas is considered inside the viewport
+                },
+          },
+        },
+    
+      };
+    return new Chart(document.getElementById('RadarChart'), radarconfig);
+}
+let radarChart = createRadar('Apple','Microsoft');
+function changeRadar(company1,company2){
+    radarChart.destroy();
+    radarChart = createRadar(company1,company2);
+}

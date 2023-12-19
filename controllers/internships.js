@@ -6,6 +6,7 @@ const { cloudinary } = require("../cloudinary");
 const searchingForImageAI = require('../BING/images');
 const areaOfWork = require('../queryData/AreaOfWorkDoughnut');
 const bar = require('../queryData/LocationBar');
+const radar = require('../queryData/CompanyRadar');
 
 
 module.exports.index = async (req, res) => {
@@ -13,6 +14,8 @@ module.exports.index = async (req, res) => {
     if (internships.length != 0){
     const barChart = await bar(internships);
     const doughnutChart = await areaOfWork(internships);
+    const radarChart = await radar(internships);
+    console.log(radarChart);
     res.render('internships/index', { data: {internships: internships , doughnut: doughnutChart, bar:barChart}})
     } else {
         res.render('internships/index', { data: {internships: internships}})

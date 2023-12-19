@@ -45,6 +45,7 @@ const config = helmet.contentSecurityPolicy({
             "https:",
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
+        frameSrc:["https://www.zippia.com/widgets/best-states-map/software-engineer/" ]
     },
 })
 module.exports=config;

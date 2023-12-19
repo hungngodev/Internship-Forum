@@ -5,35 +5,38 @@ body {
 	line-height: 1.5;
 	color: #212529;
 	background-image: url('https://www.transparenttextures.com/patterns/axiom-pattern.png');
-    
+
 }
+
 .card {
-    background-color: transparent;
-    border:none;
+	background-color: transparent;
+	border: none;
 }
-.mainPage{
+
+.mainPage {
 	background-image: url('https://img.freepik.com/premium-photo/wallpaper-simple-solid-color-background-flat-image-dark-tones_780838-7386.jpg');
 }
+
 .title {
 	font-size: 2.1rem;
-	color:#00ff9f;
+	color: #00ff9f;
 	font-weight: bold;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .description {
 	font-size: 1.5rem;
-	color:#8BE9FD;
+	color: #8BE9FD;
 	font-family: 'Courier New', Courier, monospace;
 }
 
 .minor {
 	font-size: 1rem;
-	color:#FFf;
+	color: #FFf;
 	font-style: oblique 50deg;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
- 
+
 .viewButton {
 	background-color: #BD93F9;
 	color: #F1FA8C;
@@ -47,6 +50,7 @@ body {
 	margin: 4px 2px;
 	cursor: pointer;
 }
+
 h1 {
 	font-size: 4rem;
 	color: #BD93F9;
@@ -54,19 +58,22 @@ h1 {
 	text-decoration: none;
 	font-weight: bold;
 }
+
 .profile {
-    font-size: 5rem;
-    color: #F1FA8C;
-    font-family: 'Courier New', Courier, monospace;
-    text-decoration: none;
-}
-.profile1 {
-    font-size: 2rem;
-    color: #00ff9f;
-    font-family: 'Courier New', Courier, monospace;
+	font-size: 5rem;
+	color: #F1FA8C;
+	font-family: 'Courier New', Courier, monospace;
 	text-decoration: none;
 }
-.subTitle{
+
+.profile1 {
+	font-size: 2rem;
+	color: #00ff9f;
+	font-family: 'Courier New', Courier, monospace;
+	text-decoration: none;
+}
+
+.subTitle {
 	font-size: 2.5rem;
 	color: #FF79C6;
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

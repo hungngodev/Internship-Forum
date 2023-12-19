@@ -4,4 +4,3 @@ new simpleParallax(images, {
 	transition: 'cubic-bezier(0,0,0,1)',
 	scale: 1.6,
 });
-
