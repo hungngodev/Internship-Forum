@@ -5,6 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const User = require('../models/user');
 const users = require('../controllers/users');
 
+const { validateSearch } = require('../middleware');
 router.route('/register')
     .get(users.renderRegister)
     .post(catchAsync(users.register));
@@ -15,7 +16,7 @@ router.route('/login')
 
 router.get('/logout', users.logout)
 
-router.get('/profile/:id', users.index)
+router.get('/profile/:id', catchAsync(users.index))
 
-router.get('/profile/:id/search', users.search)
+router.get('/profile/:id/search',validateSearch, catchAsync(users.search))
 module.exports = router;

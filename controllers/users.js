@@ -55,7 +55,7 @@ module.exports.search = async (req, res) => {
     console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
     const internships = await Internship.find({ $text: { $search: query },author:id })
         .populate('popupText').populate('reviews');
-    let message = internships.length>0?`Search results for "${query}" of ${author.username}`:`No results for "${query}"`;
-    res.render('internships/index', { data: { internships: internships ,message:message} })
+    let message = internships.length>0?`Search results for "${query}" from posts of ${author.username}`:`No results for "${query}" from posts of ${author.username}`;
+    res.render('users/profile', { data: { internships: internships ,message:message} })
 
 }

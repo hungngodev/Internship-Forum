@@ -8,7 +8,7 @@ const searchingForImageAI = require('../BING/images');
 
 
 module.exports.index = async (req, res) => {
-    const internships = await Internship.find({}).populate('popupText').populate('reviews');
+    const internships = await Internship.find({}).sort({lastModified:1}).populate('popupText').populate('reviews');
     res.render('internships/index', { data: { internships: internships } })
 
 }
@@ -18,6 +18,7 @@ module.exports.search = async (req, res) => {
     const query = req.query.q;
     console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
     const internships = await Internship.find({ $text: { $search: query } })
+        .sort({lastModified:1})
         .populate('popupText').populate('reviews');
     let message = internships.length>0?`Search results for "${query}"`:`No results for "${query}"`;
     res.render('internships/index', { data: { internships: internships ,message:message} })

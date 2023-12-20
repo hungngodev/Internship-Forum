@@ -5,55 +5,16 @@
   const internships = { features: <%- JSON.stringify(data.internships) %>}
 </script>
 <div class="container mainPage">
-  <h1 class="" >Profile of         <span class="profile"><%=data.author.username %> </span></h1>
-  <h2 class="subTitle">Number of posts: <%= data.internships.length %></h2>
   <% internships = data.internships; %> 
-  <% for (let internship of internships){%>
-  <div class="card mb-3">
-    <div class="row">
-      <div class="col-md-4">
-        <%if(internship.images.length) {%>
-        <img class="img-fluid" alt="" src="<%=internship.images[0].url%>" />
-        <% }else if(internship.imagesURL.length){%>
-        <img class="img-fluid" alt="" src="<%=internship.imagesURL[0]%>" />
-        <% }else {%>
-        <img
-          class="img-fluid"
-          alt=""
-          src="https://files.nc.gov/dhhs/styles/event_image/public/images/2023-04/Internship1.jpg?VersionId=wj4ZEZG.nM0C8BQ9a2PZLY0_Bk_PFjuC&itok=bFGXPWTV"
-        />
-        <% } %>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title title"><%= internship.title %></h5>
-
-          <p class="card-text description"><%= internship.description %></p>
-          <p class="card-text">
-            <small class="minor"><%= internship.location%></small>
-          </p>
-          <p class="card-text">
-            <small class="minor"><%= internship.area%></small>
-          </p>
-          <p class="card-text">
-            <small class="minor"><%= internship.company%></small>
-          </p>
-          <% if(internship.salary ==0 || internship.salary==null) {%>
-          <p class="card-text">
-            <small class="minor">Unspecified Pay</small>
-          </p>
-          <% }else { %>
-          <p class="card-text">
-            <small class="minor">$<%= internship.salary%>/hr</small>
-          </p>
-          <% } %>
-          <a class="btn btn-primary viewButton" href="/internships/<%=internship._id%>"
-            >View</a
-          >
-        </div>
-      </div>
+  <% if (!data.message){ %>
+    <h1 class="" >Profile of         <span class="profile"><%=data.author.username %> </span></h1>
+    <h2 class="subTitle">Number of posts: <%= data.internships.length %></h2>
+    <% }else{ %>
+    <h1><%= data.message %></h1>
+    <% } %>
+    <%-  include('../partials/showPost')%>
     </div>
+    <script src="/javascripts/clusterMap.js"></script>
+    <script src="/javascripts/index.js"></script>
   </div>
-  <% }%>
-</div>
-<script src="/javascripts/index.js"></script>
+  

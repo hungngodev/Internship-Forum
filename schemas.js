@@ -22,7 +22,9 @@ const extension = (joi) => ({
 });
 
 const Joi = BaseJoi.extend(extension)
-
+module.exports.searchSchema = Joi.object({
+    q: Joi.string().required().escapeHTML()
+})
 module.exports.internshipSchema = Joi.object({
     internship: Joi.object({
         title: Joi.string().required().escapeHTML(),

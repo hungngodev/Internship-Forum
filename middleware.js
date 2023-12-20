@@ -1,4 +1,4 @@
-const { internshipSchema, reviewSchema } = require('./schemas.js');
+const { internshipSchema, reviewSchema, searchSchema} = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Internship = require('./models/internship.js');
 const Review = require('./models/review');
@@ -11,7 +11,15 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 }
-
+module.exports.validateSearch= (req, res, next) => {
+    const { error } = searchSchema.validate(req.query);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
 module.exports.validateInternship = (req, res, next) => {
     const { error } = internshipSchema.validate(req.body);
     console.log(req.body);
