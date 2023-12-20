@@ -71,10 +71,10 @@ body {
 }
 
 .big-card {
-  -moz-transform: translate(0%, 0%);
-  -webkit-transform: translate(0%, 0%);
-  -o-transform: translate(0%, 0%);
-  -ms-transform: translate(0%, 0%);
+  -moz-transform: translate(0%, 500%);
+  -webkit-transform: translate(0%, 500%);
+  -o-transform: translate(0%, 500%);
+  -ms-transform: translate(0%, 500%);
   transform: translate(0%, 0%);
   -webkit-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
   -moz-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
