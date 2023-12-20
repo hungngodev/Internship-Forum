@@ -19,4 +19,5 @@ router.get('/logout', users.logout)
 router.get('/profile/:id', catchAsync(users.index))
 
 router.get('/profile/:id/search',validateSearch, catchAsync(users.search))
+
 module.exports = router;
