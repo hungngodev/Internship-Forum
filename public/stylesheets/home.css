@@ -36,6 +36,10 @@ body {
 }
 
 .title {
+  -moz-transform: translate(0%, -30%);
+  -webkit-transform: translate(0%, -30%);
+  -o-transform: translate(0%, -30%);
+  -ms-transform: translate(0%, -30%);
   transform: translate(0%, -30%);
 }
 
@@ -58,14 +62,27 @@ body {
 
 .card-group {
   position: absolute;
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -ms-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
   transition: transform 400ms ease;
+
 }
 
 .big-card {
+  -moz-transform: translate(0%, 500%);
+  -webkit-transform: translate(0%, 500%);
+  -o-transform: translate(0%, 500%);
+  -ms-transform: translate(0%, 500%);
   transform: translate(0%, 500%);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.05);
   position: absolute;
+  -webkit-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
+  -moz-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
+  -ms-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
+  -o-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
   transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
   background-position: center;
   background-size: cover;
@@ -116,30 +133,59 @@ body {
 }
 
 .card-group:hover>.big-card:nth-child(3) {
+  -moz-transform: translate(-200%, 200%) rotate(-64deg);
+  -webkit-transform: translate(-200%, 200%) rotate(-64deg);
+  -o-transform: translate(-200%, 200%) rotate(-64deg);
+  -ms-transform: translate(-200%, 200%) rotate(-64deg);
   transform: translate(-200%, 200%) rotate(-64deg);
 }
 
 .card-group:hover>.big-card:nth-child(4) {
+  -moz-transform: translate(-150%, 140%) rotate(-38deg);
+  -webkit-transform: translate(-150%, 140%) rotate(-38deg);
+  -o-transform: translate(-150%, 140%) rotate(-38deg);
+  -ms-transform: translate(-150%, 140%) rotate(-38deg);
   transform: translate(-150%, 140%) rotate(-38deg);
 }
 
 .card-group:hover>.big-card:nth-child(5) {
+  -moz-transform: translate(-80%, 97%) rotate(-22deg);
+  -webkit-transform: translate(-80%, 97%) rotate(-22deg);
+  -o-transform: translate(-80%, 97%) rotate(-22deg);
+  -ms-transform: translate(-80%, 97%) rotate(-22deg);
   transform: translate(-80%, 97%) rotate(-22deg);
+
 }
 
 .card-group:hover>.big-card:nth-child(6) {
+  -moz-transform: translate(0%, 80%);
+  -webkit-transform: translate(0%, 80%);
+  -o-transform: translate(0%, 80%);
+  -ms-transform: translate(0%, 80%);
   transform: translate(0%, 80%);
 }
 
 .card-group:hover>.big-card:nth-child(7) {
+  -moz-transform: translate(80%, 97%) rotate(22deg);
+  -webkit-transform: translate(80%, 97%) rotate(22deg);
+  -o-transform: translate(80%, 97%) rotate(22deg);
+  -ms-transform: translate(80%, 97%) rotate(22deg);
   transform: translate(80%, 97%) rotate(22deg);
 }
 
 .card-group:hover>.big-card:nth-child(8) {
+  -moz-transform: translate(150%, 140%) rotate(38deg);
+  -webkit-transform: translate(150%, 140%) rotate(38deg);
+  -o-transform: translate(150%, 140%) rotate(38deg);
+  -ms-transform: translate(150%, 140%) rotate(38deg);
   transform: translate(150%, 140%) rotate(38deg);
 }
 
 .card-group:hover>.big-card:nth-child(9) {
+  -moz-transform: translate(200%, 200%) rotate(64deg);
+  -webkit-transform: translate(200%, 200%) rotate(64deg);
+  -o-transform: translate(200%, 200%) rotate(64deg);
+  -ms-transform: translate(200%, 200%) rotate(64deg);
   transform: translate(200%, 200%) rotate(64deg);
 }
 
@@ -156,6 +202,10 @@ body {
   text-transform: uppercase;
   text-align: center;
   width: 200px;
+  -moz-transform: translate(0%, 80%);
+  -webkit-transform: translate(0%, 80%);
+  -o-transform: translate(0%, 80%);
+  -ms-transform: translate(0%, 80%);
   transform: translate(0%, 80%);
   font-family: Georgia, serif;
   text-decoration: none;
@@ -172,6 +222,10 @@ body {
   top: 0;
   width: 200%;
   height: 60px;
+  -moz-transform: translate(-25%, -10%);
+  -webkit-transform: translate(-25%, -10%);
+  -o-transform: translate(-25%, -10%);
+  -ms-transform: translate(-25%, -10%);
   transform: translate(-25%, -10%);
 }
 
@@ -180,6 +234,10 @@ body {
   stroke: #fff;
   stroke-width: 10;
   stroke-dasharray: 422, 0;
+  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -194,5 +252,9 @@ body {
   stroke-width: 10;
   stroke-dasharray: 0, 4000;
   stroke-dashoffset: 0;
+  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
 }
