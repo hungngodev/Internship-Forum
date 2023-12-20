@@ -17,4 +17,5 @@ router.get('/logout', users.logout)
 
 router.get('/profile/:id', users.index)
 
+router.get('/profile/:id/search', users.search)
 module.exports = router;

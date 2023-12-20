@@ -4,22 +4,24 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 const searchingForImageAI = require('../BING/images');
-const areaOfWork = require('../queryData/AreaOfWorkDoughnut');
-const bar = require('../queryData/LocationBar');
-const radar = require('../queryData/CompanyRadar');
+
 
 
 module.exports.index = async (req, res) => {
     const internships = await Internship.find({}).populate('popupText').populate('reviews');
-    if (internships.length != 0){
-    const barChart = await bar(internships);
-    const doughnutChart = await areaOfWork(internships);
-    const radarChart = await radar(internships);
-    console.log(radarChart);
-    res.render('internships/index', { data: {internships: internships , doughnut: doughnutChart, bar:barChart}})
-    } else {
-        res.render('internships/index', { data: {internships: internships}})
-    }
+    res.render('internships/index', { data: { internships: internships } })
+
+}
+
+
+module.exports.search = async (req, res) => {
+    const query = req.query.q;
+    console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
+    const internships = await Internship.find({ $text: { $search: query } })
+        .populate('popupText').populate('reviews');
+    let message = internships.length>0?`Search results for "${query}"`:`No results for "${query}"`;
+    res.render('internships/index', { data: { internships: internships ,message:message} })
+
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -36,7 +38,8 @@ module.exports.createInternship = async (req, res, next) => {
     internship.geometry = geoData.body.features[0].geometry;
     internship.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.author = req.user._id;
-    if (req.body.generate =="yes"){
+    internship.lastModified = new Date();
+    if (req.body.generate == "yes") {
         AI = await searchingForImageAI(internship.company, internship.location);
         internship.imagesURL.push(...AI);
     }
@@ -74,6 +77,7 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateInternship = async (req, res) => {
     const { id } = req.params;
     const internship = await Internship.findByIdAndUpdate(id, { ...req.body.internship });
+    internship.lastModified = new Date();
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.images.push(...imgs);
     await internship.save();
@@ -84,7 +88,7 @@ module.exports.updateInternship = async (req, res) => {
         await internship.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
     }
     if (req.body.deleteImagesURL) {
-        await internship.updateOne({ $pull: { imagesURL:{ $in: req.body.deleteImagesURL } } } )
+        await internship.updateOne({ $pull: { imagesURL: { $in: req.body.deleteImagesURL } } })
     }
     req.flash('success', 'Successfully updated internship!');
     res.redirect(`/internships/${internship._id}`)

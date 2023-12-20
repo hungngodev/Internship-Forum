@@ -42,9 +42,20 @@ module.exports.logout = (req, res) => {
 }
 
 module.exports.index = async (req, res) => {
-    console.log("viewing profile")
     const {id} = req.params;
     const author = await User.findById(id);
     const internships = await Internship.find({author: id}).populate('popupText');
-    res.render('users/profile', { data: {internships: internships, author: author}})
+    res.render('users/profile', { data: {internships: internships, author: author, profile: true, id: id}})
+}
+
+module.exports.search = async (req, res) => {
+    const {id} = req.params;
+    const author = await User.findById(id);
+    const query = req.query.q;
+    console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
+    const internships = await Internship.find({ $text: { $search: query },author:id })
+        .populate('popupText').populate('reviews');
+    let message = internships.length>0?`Search results for "${query}" of ${author.username}`:`No results for "${query}"`;
+    res.render('internships/index', { data: { internships: internships ,message:message} })
+
 }

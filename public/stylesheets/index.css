@@ -31,12 +31,23 @@ body {
 }
 
 .minor {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	color: #FFf;
 	font-style: oblique 50deg;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
+svg:not(.searchIconabc):not(.desIcon){
+	width: 4.5%;
+	height: 4.5%;
+	margin-right: auto;
+	color: #C5E898;
+}
+.desIcon{
+	width: 4.5%;
+	height: 4.5%;
+	margin-right: auto;
+	color: #F4CE14;
+}
 .viewButton {
 	background-color: #BD93F9;
 	color: #F1FA8C;
@@ -80,4 +91,8 @@ h1 {
 	text-decoration: none;
 	font-weight: bold;
 	margin-bottom: 20px;
+}
+
+img {
+	object-fit: contain;
 }

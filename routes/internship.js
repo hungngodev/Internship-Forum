@@ -12,6 +12,8 @@ router.route('/')
     .get(catchAsync(internships.index))
     .post(isLoggedIn, upload.array('image'), validateInternship, catchAsync(internships.createInternship))
 
+router.route('/search')
+    .get(catchAsync(internships.search))
 
 router.get('/new', isLoggedIn, internships.renderNewForm)
 

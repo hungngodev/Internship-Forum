@@ -43,7 +43,11 @@ const InternshipSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
+    lastModified: {
+        type: Date,
+        default: Date.now
+    }
 }, opts);
 
 
@@ -64,5 +68,7 @@ InternshipSchema.post('findOneAndDelete', async function (doc) {
         })
     }
 })
+
+InternshipSchema.index({'$**': 'text'});
 
 module.exports = mongoose.model('Internship', InternshipSchema);
