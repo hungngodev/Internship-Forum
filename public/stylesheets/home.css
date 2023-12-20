@@ -82,7 +82,7 @@ body {
   -o-transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
   transition: transform 1.5s cubic-bezier(.05, .43, .25, .95);
   border-radius: 50%;
-
+  background-color: rgba(255, 255, 255, 0.05);
   position: absolute;
   background-position: center;
   background-size: cover;
