@@ -62,7 +62,18 @@ const config = {
     data: data,
     options: {
         responsive: true,
-        aspectRatio: 1.8,
+        aspectRatio: function (context) {
+            var width = context.chart.width;
+            if (width > 800) {
+                return 2
+            }
+            if (width <800 && width > 400) {
+                return 1.5
+            }
+            if (width < 400) {
+                return 1
+            }
+        },
         scales: {
             x: {
                 grid: {
@@ -227,7 +238,18 @@ const config1 = {
     type: 'doughnut',
     data: doughnutdatachart,
     options: {
-        aspectRatio: 1.4,
+        aspectRatio: function (context) {
+            var width = context.chart.width;
+            if (width > 800) {
+                return 1.5
+            }
+            if (width <800 && width > 400) {
+                return 1.3
+            }
+            if (width < 400) {
+                return 1
+            }
+        },
         responsive: true,
         plugins: {
             legend: {
@@ -370,7 +392,7 @@ function createRadar(company1 = "Apple", company2 = "Microsoft") {
                     }
                 }
             },
-            aspectRatio: 1.2,
+            aspectRatio:1,
             responsive: true,
             plugins: {
                 legend: {
@@ -483,7 +505,18 @@ const lineconfig = {
     type: 'line',
     data: linedata,
     options: {
-        aspectRatio: 1.6,
+        aspectRatio: function (context) {
+            var width = context.chart.width;
+            if (width > 800) {
+                return 2
+            }
+            if (width <800 && width > 400) {
+                return 1.5
+            }
+            if (width < 400) {
+                return 1
+            }
+        },
         responsive: true,
         plugins: {
             legend: {
