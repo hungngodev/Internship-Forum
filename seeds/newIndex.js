@@ -83,7 +83,7 @@ const seedDBInternship = async () => {
                     geometry: geoData.body.features[0].geometry,
                     imagesURL: imagesURL[i][j],
                     reviews: internshipReview,
-                    lastModified: new Date(fakerator.date.past(2, new Date(2023, 0, 6))),
+                    lastModified: new Date(fakerator.date.past(2, new Date(2024, 0, 6))),
                 })
                 // const author = User.findById(userData[random].id);
                 // await author.updateOne({ $push: { post: camp._id } });
