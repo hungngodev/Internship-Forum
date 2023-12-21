@@ -1,3 +1,6 @@
+html {
+	font-size: 16px;
+}
 body {
 	background-color: #000;
 	font-family: 'Roboto', sans-serif;
@@ -16,14 +19,14 @@ body {
 }
 
 .title {
-	font-size: 2.1rem;
+	font-size: 1.6rem;
 	color:#00ff9f;
 	font-weight: bold;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .description {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	color:#8BE9FD;
 	font-family: 'Courier New', Courier, monospace;
 }
@@ -58,4 +61,28 @@ body {
 
 img {
 	object-fit: fill;
+}
+
+svg:not(.searchIconabc):not(.desIcon){
+	width: 4.5%;
+	height: 4.5%;
+	margin-right: 10px;
+	color: #C5E898;
+}
+.desIcon{
+	width: 4.5%;
+	height: 4.5%;
+	margin-right: auto;
+	color: #F4CE14;
+}
+@media screen and (max-width: 756px) {
+	html {
+	  font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+  html {
+	font-size: 7px;
+  }
 }

@@ -42,6 +42,7 @@ const config = helmet.contentSecurityPolicy({
             "https://www.shutterstock.com/",
             "https://wallpaper.dog/large/10812328.jpg",
             "https://img.freepik.com/premium-psd/abstract-colorful-gradient-background-psd-modern-windows-desktop-wallpaper-4k-panoramic-size-2022_691560-34.jpg",
+            "https://img.freepik.com/free-vector/gradient-hexagonal-background_23-2148947281.jpg?w=1480&t=st=1703110610~exp=1703111210~hmac=1f44a6978a119312a4a083de3738b7e901e3c24c3ee9803ec7e3a4e9480e5c3b",
             "https:",
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
