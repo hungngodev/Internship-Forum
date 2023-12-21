@@ -8,7 +8,7 @@ const searchingForImageAI = require('../BING/images');
 
 
 module.exports.index = async (req, res) => {
-    const internships = await Internship.find({}).sort({lastModified:1}).populate('popupText').populate('reviews');
+    const internships = await Internship.find({}).sort({lastModified:-1}).populate('popupText').populate('reviews');
     res.render('internships/index', { data: { internships: internships } })
 
 }
