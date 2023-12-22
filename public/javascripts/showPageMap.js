@@ -1,6 +1,7 @@
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'map',
+    
     center: internship.geometry.coordinates, // starting position [lng, lat]
     zoom: 10 // starting zoom
 });
