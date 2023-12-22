@@ -14,7 +14,7 @@ new mapboxgl.Marker()
     .setPopup(
         new mapboxgl.Popup({ offset: 50 })
             .setHTML(
-                `<h1>${internship.title}</h1><p>${internship.location}</p>`
+                `<h3>${internship.title}</h3><p>${internship.location}</p>`
             )
     )
     .addTo(map)
