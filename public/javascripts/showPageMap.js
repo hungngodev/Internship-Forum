@@ -12,10 +12,9 @@ map.addControl(new mapboxgl.NavigationControl());
 new mapboxgl.Marker()
     .setLngLat(internship.geometry.coordinates)
     .setPopup(
-        new mapboxgl.Popup({ offset: 50 })
+        new mapboxgl.Popup({ offset: 0 })
             .setHTML(
                 `<h3>${internship.title}</h3><p>${internship.location}</p>`
             )
     )
     .addTo(map)
-
