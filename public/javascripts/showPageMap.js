@@ -1,7 +1,6 @@
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v12', // stylesheet location
     center: internship.geometry.coordinates, // starting position [lng, lat]
     zoom: 10 // starting zoom
 });
@@ -14,7 +13,7 @@ new mapboxgl.Marker()
     .setPopup(
         new mapboxgl.Popup({ offset: 50 })
             .setHTML(
-                `<h3>${internship.title}</h3><p>${internship.location}</p>`
+                `<h1>${internship.title}</h1><p>${internship.location}</p>`
             )
     )
     .addTo(map)

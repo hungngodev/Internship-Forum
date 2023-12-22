@@ -392,7 +392,7 @@ function createRadar(company1 = "Apple", company2 = "Microsoft") {
                     }
                 }
             },
-            aspectRatio:1,
+            aspectRatio:1.2,
             responsive: true,
             plugins: {
                 legend: {
@@ -433,11 +433,11 @@ function createRadar(company1 = "Apple", company2 = "Microsoft") {
                     callbacks: {
                         label: ((tooltipItem, data) => {
                             if (tooltipItem.dataIndex === 0) {
-                                return tooltipItem.dataset.label + ': ' + '$' + tooltipItem.raw + '/hr';
+                                return tooltipItem.dataset.label + ': ' + '$' + tooltipItem.raw.toFixed(1) + '/hr';
                             } else if (tooltipItem.dataIndex === 1) {
-                                return tooltipItem.dataset.label + ':' + tooltipItem.raw / 10;
+                                return tooltipItem.dataset.label + ':' + (tooltipItem.raw / 10).toFixed(1);
                             } else if (tooltipItem.dataIndex === 2) {
-                                return tooltipItem.dataset.label + ':' + tooltipItem.raw / 10;
+                                return tooltipItem.dataset.label + ':' + (tooltipItem.raw / 10).toFixed(1);
                             }
 
                         })
