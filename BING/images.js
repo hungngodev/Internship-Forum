@@ -11,7 +11,7 @@ let subscriptionKey = process.env.BING_KEY;
 let endpoint = process.env.BING_ENDPOINT + '/v7.0/images/search';
 let mkt = 'en-US'
 
-export default function (company, location) {
+let searchingForImageAI = function (company, location) {
     return new Promise(function (resolve, reject) {
         const query = `Image of headquarters office of ${company} in ${location}`;
         let request_params = {
@@ -27,10 +27,10 @@ export default function (company, location) {
             json: true
         }
         request(request_params, function (error, response, body) {
-            if (!error) {
+            if (!error) { 
                 if (body){
                     if (body.value === undefined){
-                        reject(company, location);
+                        reject('lmao');
                     }
                     else{
                         const length = body.value.length < 30? body.value.length : 30;
@@ -82,14 +82,20 @@ export default function (company, location) {
 // seedDB().then((imagedata) => {
 //     console.log(imagedata);
 // })
-// async function main() {
-//     try {
-//         const company = internshipData[5].company;
-//         const location = internshipData[5].location[0];
-//         const a = await searchingForImageAI(company, location);
-//         console.log(a);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-// main();
+async function main() {
+    try {
+        const company = internshipData[5].company;
+        const location = internshipData[5].location[0];
+        const a = await searchingForImageAI(company, location);
+        console.log(a);
+    } catch (error) {
+        console.log(error);
+    }
+}
+try{
+    searchingForImageAI("Google", "NY");
+} catch (error) {
+    console.log(error);
+}
+main();
+export default  searchingForImageAI;
