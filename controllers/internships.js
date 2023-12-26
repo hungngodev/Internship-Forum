@@ -42,7 +42,7 @@ const createInternship = async (req, res, next) => {
     internship.author = req.user._id;
     internship.lastModified = new Date();
     if (req.body.generate == "yes") {
-        AI = await searchingForImageAI(internship.company, internship.location);
+        let AI = await searchingForImageAI(internship.company, internship.location);
         internship.imagesURL.push(...AI);
     }
     // user.post.push(internship);
