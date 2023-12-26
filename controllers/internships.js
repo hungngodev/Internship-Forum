@@ -1,20 +1,21 @@
-const Internship = require('../models/internship');
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
+
+import Internship from '../models/internship.js';
+import { cloudinary } from "../cloudinary/index.js";
+import searchingForImageAI from '../BING/images.js';
+
+
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
-const { cloudinary } = require("../cloudinary");
-const searchingForImageAI = require('../BING/images');
 
-
-
-module.exports.index = async (req, res) => {
+const index = async (req, res) => {
     const internships = await Internship.find({}).sort({lastModified:-1}).populate('popupText').populate('reviews');
     res.render('internships/index', { data: { internships: internships, mapBoxToken:mapBoxToken} })
 
 }
 
 
-module.exports.search = async (req, res) => {
+const search = async (req, res) => {
     const query = req.query.q;
     console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
     const internships = await Internship.find({ $text: { $search: query } })
@@ -25,11 +26,11 @@ module.exports.search = async (req, res) => {
 
 }
 
-module.exports.renderNewForm = (req, res) => {
+const renderNewForm = (req, res) => {
     res.render('internships/new');
 }
 
-module.exports.createInternship = async (req, res, next) => {
+const createInternship = async (req, res, next) => {
     const geoData = await geocoder.forwardGeocode({
         query: req.body.internship.location,
         limit: 1
@@ -51,7 +52,7 @@ module.exports.createInternship = async (req, res, next) => {
     res.redirect(`/internships/${internship._id}`)
 }
 
-module.exports.showInternship = async (req, res,) => {
+const showInternship = async (req, res,) => {
     const internship = await Internship.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
@@ -65,7 +66,7 @@ module.exports.showInternship = async (req, res,) => {
     res.render('internships/show', { internship });
 }
 
-module.exports.renderEditForm = async (req, res) => {
+const renderEditForm = async (req, res) => {
     const { id } = req.params;
     const internship = await Internship.findById(id)
     if (!internship) {
@@ -75,13 +76,14 @@ module.exports.renderEditForm = async (req, res) => {
     res.render('internships/edit', { internship });
 }
 
-module.exports.updateInternship = async (req, res) => {
+const updateInternship = async (req, res) => {
     const { id } = req.params;
     const internship = await Internship.findByIdAndUpdate(id, { ...req.body.internship });
     internship.lastModified = new Date();
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.images.push(...imgs);
     await internship.save();
+    console.log(req.body.deleteImages)
     if (req.body.deleteImages) {
         for (let filename of req.body.deleteImages) {
             await cloudinary.uploader.destroy(filename);
@@ -95,7 +97,7 @@ module.exports.updateInternship = async (req, res) => {
     res.redirect(`/internships/${internship._id}`)
 }
 
-module.exports.deleteInternship = async (req, res) => {
+const deleteInternship = async (req, res) => {
     const { id } = req.params;
     // const internship = await Internship.findById(req.params.id).populate({
     //     path: 'reviews',
@@ -112,10 +114,21 @@ module.exports.deleteInternship = async (req, res) => {
     // }
     const internship = await Internship.findById(id);
     const images = internship.images.map(i => i.filename);
-    for (let filename of images) {
+    console.log(images)
+    for (let filename of images) {  
         await cloudinary.uploader.destroy(filename);
     }
     await Internship.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted internship')
     res.redirect('/internships');
 }
+const internships = {
+    index,
+    search,
+    renderNewForm,
+    createInternship,
+    showInternship,
+    renderEditForm,
+    updateInternship,
+    deleteInternship}
+export default internships;

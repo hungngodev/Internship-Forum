@@ -1,4 +1,5 @@
-const Fakerator = require("fakerator");
+import Fakerator from "fakerator";
+
 const fakerator = Fakerator();
 
 function generateUsers(numberOfUsers) {
@@ -18,5 +19,5 @@ function generateUsers(numberOfUsers) {
 
 const numberOfUsers = 123;
 const userData = generateUsers(numberOfUsers);
-module.exports.userData = generateUsers(numberOfUsers);
-module.exports.numberOfUsers= numberOfUsers;
+
+export { userData, numberOfUsers};

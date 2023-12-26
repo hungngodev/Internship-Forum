@@ -1,28 +1,36 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();
+    dotenv.config();
 }
-console.log("testing");
 
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const ejsMate = require('ejs-mate');
-const session = require('express-session');
-const flash = require('connect-flash');
-const ExpressError = require('./utils/ExpressError');
-const methodOverride = require('method-override');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const User = require('./models/user');
-const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
-const userRoutes = require('./routes/users');
-const internshipRoutes = require('./routes/internship');
-const reviewRoutes = require('./routes/reviews');
-const statisticsRoutes = require('./routes/statistics');
-const config= require('./helmet/index');
+import express from 'express';
+import path from 'path';
+import mongoose from 'mongoose';
+import ejsMate from 'ejs-mate';
+import session from 'express-session';
+import flash from 'connect-flash';
+import methodOverride from 'method-override';
+import passport from 'passport';
+import LocalStrategy from 'passport-local';
+import connectMongo from 'connect-mongo';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
+import { fileURLToPath } from 'url';
 
-const MongoDBStore = require("connect-mongo")(session);
+import User from './models/user.js';
+import config from './helmet/index.js';
+import userRoutes from './routes/users.js';
+import internshipRoutes from './routes/internship.js';
+import reviewRoutes from './routes/reviews.js';
+import statisticsRoutes from './routes/statistics.js';
+import ExpressError from './utils/ExpressError.js';
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
+const MongoDBStore = connectMongo(session);
+
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
 

@@ -1,9 +1,10 @@
-const { internshipSchema, reviewSchema, searchSchema} = require('./schemas.js');
-const ExpressError = require('./utils/ExpressError');
-const Internship = require('./models/internship.js');
-const Review = require('./models/review');
+import { internshipSchema, reviewSchema, searchSchema } from './schemas.js';
+import  ExpressError from './utils/ExpressError.js';
+import Internship from './models/internship.js';
+import Review from './models/review.js';
 
-module.exports.isLoggedIn = (req, res, next) => {
+
+const isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl
         req.flash('error', 'You must be signed in first!');
@@ -11,7 +12,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 }
-module.exports.validateSearch= (req, res, next) => {
+const validateSearch= (req, res, next) => {
     const { error } = searchSchema.validate(req.query);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
@@ -20,7 +21,7 @@ module.exports.validateSearch= (req, res, next) => {
         next();
     }
 }
-module.exports.validateInternship = (req, res, next) => {
+const validateInternship = (req, res, next) => {
     const { error } = internshipSchema.validate(req.body);
     console.log(req.body);
     if (error) {
@@ -31,7 +32,7 @@ module.exports.validateInternship = (req, res, next) => {
     }
 }
 
-module.exports.isAuthor = async (req, res, next) => {
+const isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const internship = await Internship.findById(id);
     if (!internship.author.equals(req.user._id)) {
@@ -41,7 +42,7 @@ module.exports.isAuthor = async (req, res, next) => {
     next();
 }
 
-module.exports.isReviewAuthor = async (req, res, next) => {
+const isReviewAuthor = async (req, res, next) => {
     const { id, reviewId } = req.params;
     const review = await Review.findById(reviewId);
     if (!review.author.equals(req.user._id)) {
@@ -51,7 +52,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     next();
 }
 
-module.exports.validateReview = (req, res, next) => {
+const validateReview = (req, res, next) => {
     const { error } = reviewSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
@@ -60,3 +61,4 @@ module.exports.validateReview = (req, res, next) => {
         next();
     }
 }
+export { isLoggedIn, validateInternship, isAuthor, validateReview, isReviewAuthor, validateSearch };

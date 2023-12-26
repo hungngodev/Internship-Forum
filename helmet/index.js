@@ -1,4 +1,5 @@
-const helmet = require('helmet');
+import helmet from 'helmet';
+
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
     "https://api.tiles.mapbox.com/",
@@ -48,5 +49,5 @@ const config = helmet.contentSecurityPolicy({
         fontSrc: ["'self'", ...fontSrcUrls],
         frameSrc:["https://www.zippia.com/widgets/best-states-map/software-engineer/" ]
     },
-})
-module.exports=config;
+});
+export default config;

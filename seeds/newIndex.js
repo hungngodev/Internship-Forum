@@ -1,20 +1,26 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();
+    dotenv.config();
 }
-const mongoose = require('mongoose');
-const {internshipData}= require('./file');
-const Internship = require('../models/internship');
-const Review = require('../models/review');
-const {userData, numberOfUsers} = require('./user'); 
-const User = require('../models/user');
-const { number } = require('joi');
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const imagesURL = require('./images');
+import mongoose from 'mongoose';
+import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
+import Fakerator from "fakerator";
+
+import imagesURL from './images.js';
+import  internshipData  from './file.js';
+import Internship from '../models/internship.js';
+import Review from '../models/review.js';
+import { userData, numberOfUsers } from './user.js';
+import User from '../models/user.js';
+
+
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
-const Fakerator = require("fakerator");
 const fakerator = Fakerator();
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/internship';
+
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,

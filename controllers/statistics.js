@@ -1,9 +1,10 @@
-const Internship = require('../models/internship');
-const areaOfWork = require('../queryData/AreaOfWorkDoughnut');
-const bar = require('../queryData/LocationBar');
-const radar = require('../queryData/CompanyRadar');
-const line = require('../queryData/LineChartStacked');
-module.exports.index = async (req, res) => {
+import Internship from '../models/internship.js';
+import areaOfWork from '../queryData/AreaOfWorkDoughnut.js';
+import bar from '../queryData/LocationBar.js';
+import radar from '../queryData/CompanyRadar.js';
+import line from '../queryData/LineChartStacked.js';
+
+const index = async (req, res) => {
     const internships = await Internship.find({}).populate('popupText').populate('reviews');
     if (internships.length != 0){
     const barChart = await bar(internships);
@@ -15,3 +16,4 @@ module.exports.index = async (req, res) => {
         res.render('statistics/index', { data: {internships: internships}})
     }
 }
+export default index;

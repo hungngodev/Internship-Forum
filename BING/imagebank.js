@@ -1,4 +1,4 @@
-module.exports.imagebank= ['https://tse3.mm.bing.net/th?id=OIP.9s4NVnk87mRQ3JepjWkQqQHaEK&pid=Api',
+const imagebank= ['https://tse3.mm.bing.net/th?id=OIP.9s4NVnk87mRQ3JepjWkQqQHaEK&pid=Api',
 'https://tse1.explicit.bing.net/th?id=OIP.Nch2QyK8Kk-xNonxQslM6wHaE8&pid=Api',
 'https://tse4.mm.bing.net/th?id=OIP.gPkN5rvq2CQ8FyD60-5AIgHaEK&pid=Api',
 'https://tse3.mm.bing.net/th?id=OIP.NcTKxHVeF3T_VOnu_fnzfwHaEW&pid=Api',
@@ -209,3 +209,4 @@ module.exports.imagebank= ['https://tse3.mm.bing.net/th?id=OIP.9s4NVnk87mRQ3Jepj
 'https://tse2.mm.bing.net/th?id=OIP.ITB5rA1lHNn83UoNNPthPgHaEK&pid=Api',
 'https://tse2.mm.bing.net/th?id=OIP.N_f5kvKRUChuQcPpWCAmXQHaD4&pid=Api',
 ]
+export default imagebank;

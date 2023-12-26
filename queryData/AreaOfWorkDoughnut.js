@@ -1,5 +1,3 @@
-const QuickChart = require('quickchart-js');
-
 async function areaOfWork(internships) {
   return new Promise((resolve, reject) => {
     try {
@@ -8,7 +6,6 @@ async function areaOfWork(internships) {
         if (internship.area in areaClass) {
           areaClass[internship.area] += 1;
         } else {
-          area1 = (typeof internship.area === 'string') ? internship.area : internship.area.toString();
           areaClass[internship.area] = 1;
         }
       }
@@ -16,6 +13,18 @@ async function areaOfWork(internships) {
       const data1 = labels1.map(label => areaClass[label]);
       const result= {labels1: labels1, data1: data1};
       resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export default areaOfWork;
+
+
+
+
+
       // const chart = new QuickChart();
       // chart.setWidth(1600);
       // chart.setHeight(700);
@@ -61,10 +70,3 @@ async function areaOfWork(internships) {
 
       // const chartUrl = chart.getUrl();
       // resolve(chartUrl);
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
-
-module.exports = areaOfWork;

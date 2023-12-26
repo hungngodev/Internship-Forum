@@ -1,10 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const statistics = require('../controllers/statistics');
-const catchAsync = require('../utils/catchAsync');
-const Internship = require('../models/internship');
+import express from 'express';
+import index from '../controllers/statistics.js';
+import catchAsync from '../utils/catchAsync.js';
+import Internship from '../models/internship.js';
 
-router.route('/')
-    .get(catchAsync(statistics.index))
+const statisticsRoutes = express.Router();
 
-module.exports = router;
+
+statisticsRoutes.route('/')
+    .get(catchAsync(index))
+
+export default statisticsRoutes;

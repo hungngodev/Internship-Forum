@@ -3258,4 +3258,4 @@ const imagesURL = [
         ]
       ],
   ]
-module.exports = imagesURL;
+export default imagesURL;

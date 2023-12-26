@@ -1,5 +1,4 @@
-const { count } = require('mongoose/lib/model');
-const review = require('../models/review');
+
 async function radar(internships) {
     return new Promise((resolve, reject) => {
         try {
@@ -59,5 +58,4 @@ async function radar(internships) {
         }
     });
 }
-
-module.exports = radar;
+export default radar;

@@ -1,6 +1,3 @@
-const { count } = require('mongoose/lib/model');
-const QuickChart = require('quickchart-js');
-
 async function bar(internships) {
     return new Promise((resolve, reject) => {
         try {
@@ -123,5 +120,4 @@ async function bar(internships) {
         }
     });
 }
-
-module.exports = bar;
+export default bar;

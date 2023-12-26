@@ -1,7 +1,10 @@
-const Internship = require('../models/internship');
-const Review = require('../models/review');
+import e from 'connect-flash';
 
-module.exports.createReview = async (req, res) => {
+import Internship from '../models/internship.js';
+import Review from '../models/review.js';
+
+
+const createReview = async (req, res) => {
     const internship = await Internship.findById(req.params.id);
     const review = new Review(req.body.review);
     // const user = User.findById(req.user._id);
@@ -15,7 +18,7 @@ module.exports.createReview = async (req, res) => {
     res.redirect(`/internships/${internship._id}`);
 }
 
-module.exports.deleteReview = async (req, res) => {
+const deleteReview = async (req, res) => {
     const { id, reviewId } = req.params;
     // const review= Review.findById(reviewId);
     // const author = User.findById(review.author._id);
@@ -25,3 +28,7 @@ module.exports.deleteReview = async (req, res) => {
     req.flash('success', 'Successfully deleted review')
     res.redirect(`/internships/${id}`);
 }
+const reviews = {
+    createReview,
+    deleteReview}
+export default reviews;

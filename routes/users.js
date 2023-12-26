@@ -1,23 +1,24 @@
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
-const catchAsync = require('../utils/catchAsync');
-const User = require('../models/user');
-const users = require('../controllers/users');
+import express from 'express';
+const userRoutes = express.Router();
+import passport from 'passport';
+import catchAsync from '../utils/catchAsync.js';
+import User from '../models/user.js';
+import users from '../controllers/users.js';
+import { validateSearch } from '../middleware.js';
 
-const { validateSearch } = require('../middleware');
-router.route('/register')
+
+userRoutes.route('/register')
     .get(users.renderRegister)
     .post(catchAsync(users.register));
 
-router.route('/login')
+userRoutes.route('/login')
     .get(users.renderLogin)
     .post(passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), users.login)
 
-router.get('/logout', users.logout)
+userRoutes.get('/logout', users.logout)
 
-router.get('/profile/:id', catchAsync(users.index))
+userRoutes.get('/profile/:id', catchAsync(users.index))
 
-router.get('/profile/:id/search',validateSearch, catchAsync(users.search))
+userRoutes.get('/profile/:id/search',validateSearch, catchAsync(users.search))
 
-module.exports = router;
+export default userRoutes;

@@ -1,5 +1,3 @@
-const { count } = require('mongoose/lib/model');
-const review = require('../models/review');
 async function line(internships) {
     return new Promise((resolve, reject) => {
         try {
@@ -57,5 +55,4 @@ async function line(internships) {
         }
     });
 }
-
-module.exports = line;
+export default line;

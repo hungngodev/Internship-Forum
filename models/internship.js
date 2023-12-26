@@ -1,5 +1,8 @@
-const mongoose = require('mongoose');
-const Review = require('./review')
+import mongoose from 'mongoose';
+
+import Review from './review.js';
+
+
 const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
@@ -71,4 +74,4 @@ InternshipSchema.post('findOneAndDelete', async function (doc) {
 
 InternshipSchema.index({'$**': 'text'});
 
-module.exports = mongoose.model('Internship', InternshipSchema);
+export default mongoose.model('Internship', InternshipSchema);

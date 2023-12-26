@@ -1,11 +1,12 @@
-const User = require('../models/user');
-const Internship = require('../models/internship');
+import User from '../models/user.js';
+import Internship from '../models/internship.js';
 
-module.exports.renderRegister = (req, res) => {
+
+const renderRegister = (req, res) => {
     res.render('users/register');
 }
 
-module.exports.register = async (req, res, next) => {
+const register = async (req, res, next) => {
     try {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
@@ -23,32 +24,32 @@ module.exports.register = async (req, res, next) => {
 
 
 
-module.exports.renderLogin = (req, res) => {
+const renderLogin = (req, res) => {
     res.render('users/login');
 }
 
-module.exports.login = (req, res) => {
+const login = (req, res) => {
     req.flash('success', `Welcome back ${req.user.username}!!!`);
     const redirectUrl = req.session.returnTo || '/internships';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 }
 
-module.exports.logout = (req, res) => {
+const logout = (req, res) => {
     req.logout();
     // req.session.destroy();
     req.flash('success', "Goodbye!");
     res.redirect('/internships');
 }
 
-module.exports.index = async (req, res) => {
+const index = async (req, res) => {
     const {id} = req.params;
     const author = await User.findById(id);
     const internships = await Internship.find({author: id}).populate('popupText');
     res.render('users/profile', { data: {internships: internships, author: author, profile: true, id: id}})
 }
 
-module.exports.search = async (req, res) => {
+const search = async (req, res) => {
     const {id} = req.params;
     const author = await User.findById(id);
     const query = req.query.q;
@@ -58,3 +59,13 @@ module.exports.search = async (req, res) => {
     res.render('users/profile', { data: { internships: internships ,message:message} })
 
 }
+const users = {
+    renderRegister,
+    register,
+    renderLogin,
+    login,
+    logout,
+    index,
+    search
+}
+export default users;
