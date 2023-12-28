@@ -9,7 +9,7 @@
     "start": "node app.js",
     "server":"npx nodemon app.js",
     "client": "npm run dev --prefix Client-side",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
   "author": "",

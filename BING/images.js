@@ -82,20 +82,20 @@ let searchingForImageAI = function (company, location) {
 // seedDB().then((imagedata) => {
 //     console.log(imagedata);
 // })
-async function main() {
-    try {
-        const company = internshipData[5].company;
-        const location = internshipData[5].location[0];
-        const a = await searchingForImageAI(company, location);
-        console.log(a);
-    } catch (error) {
-        console.log(error);
-    }
-}
-try{
-    searchingForImageAI("Google", "NY");
-} catch (error) {
-    console.log(error);
-}
-main();
+// async function main() {
+//     try {
+//         const company = internshipData[5].company;
+//         const location = internshipData[5].location[0];
+//         const a = await searchingForImageAI(company, location);
+//         console.log(a);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+// try{
+//     searchingForImageAI("Google", "NY");
+// } catch (error) {
+//     console.log(error);
+// }
+// main();
 export default  searchingForImageAI;
