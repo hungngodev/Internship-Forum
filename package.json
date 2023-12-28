@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "server":"npx nodemon app.js",
+    "client": "npm run dev --prefix Client-side",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,7 @@
     "@azure/cognitiveservices-imagesearch": "^3.0.1",
     "@mapbox/mapbox-sdk": "^0.11.0",
     "cloudinary": "^1.23.0",
+    "concurrently": "^8.2.2",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
     "dotenv": "^8.6.0",
