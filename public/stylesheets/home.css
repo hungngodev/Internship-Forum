@@ -4,7 +4,7 @@ html {
 body {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://img.freepik.com/free-vector/gradient-hexagonal-background_23-2148947281.jpg?w=1480&t=st=1703110610~exp=1703111210~hmac=1f44a6978a119312a4a083de3738b7e901e3c24c3ee9803ec7e3a4e9480e5c3b");
+    url("https://images.unsplash.com/photo-1476445704028-a36e0c798192?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-position: center;
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
