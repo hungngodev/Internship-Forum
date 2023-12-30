@@ -4,7 +4,7 @@ const bar = require('../queryData/LocationBar');
 const radar = require('../queryData/CompanyRadar');
 const line = require('../queryData/LineChartStacked');
 module.exports.index = async (req, res) => {
-    const internships = await Internship.find({}).populate('popupText').populate('reviews');
+    const internships = await Internship.find({}).populate('reviews');
     if (internships.length != 0){
     const barChart = await bar(internships);
     const doughnutChart = await areaOfWork(internships);
