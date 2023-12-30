@@ -30,6 +30,8 @@ db.once("open", () => {
 const seedDBInternship = async () => {
     await Internship.deleteMany({});
     await User.deleteMany({});
+    await Review.deleteMany({});
+    await db.dropCollection('sessions');
     for (let i = 0; i < userData.length; i++) {//
         const { email, username, password } = userData[i];
         const user = new User({ email, username });
