@@ -4,7 +4,8 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 const searchingForImageAI = require('../BING/images');
-
+const isUrl = require('is-url');
+const internship = require('../models/internship');
 
 
 module.exports.index = async (req, res) => {
@@ -16,7 +17,6 @@ module.exports.index = async (req, res) => {
 
 module.exports.search = async (req, res) => {
     const query = req.query.q;
-    console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
     const internships = await Internship.find({ $text: { $search: query } })
         .sort({lastModified:1})
         .populate('popupText').populate('reviews');
@@ -40,8 +40,9 @@ module.exports.createInternship = async (req, res, next) => {
     internship.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.author = req.user._id;
     internship.lastModified = new Date();
+    internship.link = isUrl(internship.link) ? internship.link : `https://google.com/search?q=${internship.company}+${internship.location}`;
     if (req.body.generate == "yes") {
-        AI = await searchingForImageAI(internship.company, internship.location);
+        let AI = await searchingForImageAI(internship.company, internship.location);
         internship.imagesURL.push(...AI);
     }
     // user.post.push(internship);
@@ -78,6 +79,7 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateInternship = async (req, res) => {
     const { id } = req.params;
     const internship = await Internship.findByIdAndUpdate(id, { ...req.body.internship });
+    internship.link = isUrl(internship.link) ? internship.link : `https://google.com/search?q=${internship.company}+${internship.location}`;
     internship.lastModified = new Date();
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     internship.images.push(...imgs);

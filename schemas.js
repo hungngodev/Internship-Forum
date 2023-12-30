@@ -32,7 +32,7 @@ module.exports.internshipSchema = Joi.object({
         area: Joi.string().required().escapeHTML(),
         location: Joi.string().required().escapeHTML(),
         company: Joi.string().required().escapeHTML(),
-        link: Joi.string().required().escapeHTML(),
+        link: Joi.string().required(),
         description: Joi.string().required().escapeHTML(),
         state: Joi.string().required().escapeHTML(),
     }).required(),
