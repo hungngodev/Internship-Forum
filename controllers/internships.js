@@ -9,7 +9,7 @@ const internship = require('../models/internship');
 
 
 module.exports.index = async (req, res) => {
-    const internships = await Internship.find({}).sort({lastModified:-1}).populate('popupText').populate('reviews');
+    const internships = await Internship.find({}).sort({lastModified:-1}).populate('reviews');
     res.render('internships/index', { data: { internships: internships, mapBoxToken:mapBoxToken} })
 
 }
@@ -19,7 +19,7 @@ module.exports.search = async (req, res) => {
     const query = req.query.q;
     const internships = await Internship.find({ $text: { $search: query } })
         .sort({lastModified:1})
-        .populate('popupText').populate('reviews');
+    .populate('reviews');
     let message = internships.length>0?`Search results for "${query}"`:`No results for "${query}"`;
     res.render('internships/index', { data: { internships: internships ,message:message,mapBoxToken:mapBoxToken} })
 
