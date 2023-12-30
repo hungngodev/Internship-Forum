@@ -1,4 +1,5 @@
 const Internship = require('../models/internship');
+const Review = require('../models/review');
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
@@ -116,6 +117,9 @@ module.exports.deleteInternship = async (req, res) => {
     const images = internship.images.map(i => i.filename);
     for (let filename of images) {
         await cloudinary.uploader.destroy(filename);
+    }
+    for (let review of internship.reviews) {
+        await Review.findByIdAndDelete(review._id);
     }
     await Internship.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted internship')
