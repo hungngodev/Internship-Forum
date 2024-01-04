@@ -24,10 +24,18 @@
                                 Looks good!
                             </div>
                         </div>
-                        <button class="btn btn-success btn-block viewButton">Login</button>
+                        <button class="btn btn-success btn-block viewButton" type="submit">Login</button>
+                        <button id="explore"  class="btn btn-outline-info w-100" type="submit"> Explore the App</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script >
+    document.getElementById("explore").addEventListener('click',()=> {
+        document.getElementById("username").value = 'hung';
+        document.getElementById("password").value = 'hung';
+        console.log('dmdmdmdmd')
+    });
+</script>

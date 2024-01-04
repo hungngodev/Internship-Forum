@@ -8,7 +8,7 @@
                     alt="" class="card-img-top" />
                 <div class="card-body">
                     <h5 class="card-title title">Register</h5>
-                    <form action="/register" method="POST" class="validated-form" novalidate>
+                    <form action="/register" method="POST" class="validated-form" id="register" novalidate>
                         <div class="mb-3">
                             <label class="form-label minor" for="username">Username</label>
                             <input class="form-control" type="text" id="username" name="username" required autofocus>
@@ -30,7 +30,8 @@
                                 Looks good!
                             </div>
                         </div>
-                        <button class="btn btn-success btn-block viewButton">Register</button>
+                        <button class="btn btn-success btn-block viewButton" type="submit">Register</button>
+                        <button id="explore"  class="btn btn-outline-info w-100" type="submit"> Explore the App</button>
                     </form>
 
                 </div>
@@ -38,3 +39,12 @@
         </div>
     </div>
 </div>
+<script >
+    document.getElementById("explore").addEventListener('click',()=> {
+        document.getElementById("username").value = 'hung';
+        document.getElementById("password").value = 'hung';
+        document.getElementById("email").value = 'hung@gmail.com';
+        document.getElementById("register").action= '/login';
+        console.log('dmdmdmdmd')
+    });
+</script>
