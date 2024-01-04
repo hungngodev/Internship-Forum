@@ -1,3 +1,4 @@
 node_modules
 .env
 Worktodo.txt
+.DS_Store
