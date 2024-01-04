@@ -1,4 +1,6 @@
+.DS_Store
 node_modules
 .env
 Worktodo.txt
 .DS_Store
+.DS_Store?
