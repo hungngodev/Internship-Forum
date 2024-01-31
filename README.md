@@ -36,19 +36,6 @@ Backend Operations
 - Database Management: Efficient data storage and retrieval through MongoDB.
 - Security Measures: Helmet integration for enhanced security and prevention of cross-site scripting (XSS).
 
-Installation and Deployment
-
-Follow these simple steps to set up and deploy Internship Forum locally:
-
-1. Clone the repository: git clone https://github.com/yourusername/InternshipForum.git
-2. Install dependencies: npm install
-3. Configure environment variables.
-4. Run the application: npm start
-
-Usage
-
-Access the application via your web browser at https://your-app-url.com. Register or log in to start exploring and contributing to the world of computer science internships.
-
 Contribution and Support
 
 I welcome contributions from developers of all skill levels. To contribute, fork the repository, make your changes, and submit a pull request.
